@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+
+	<style>
+	body{
+		background-color: #dbd7ce;
+		font-family: Dapifer;
+
+	}
+	h2{
+		/*margin-left: 140px;*/
+		text-align: center;
+		color: gray;
+
+		}
+	ul {
+			list-style-type: none;
+			margin: 9px;
+			padding: 0;
+			overflow: hidden;
+			background-color: #333;
+	}
+
+	li {
+			float: left;
+			margin-left: 26px;
+	}
+
+	li a {
+			display: block;
+			color: white;
+			text-align: center;
+			padding: 14px 16px;
+			text-decoration: none;
+	}
+
+	li a:hover {
+			background-color: #111;
+	}
+	#a{
+		margin-left: 600px;
+	}
+</style>
+
+</head>
+<body>
+
+	<div class="nav_bar">
+	<!-- Navigation -->
+	<nav class="w3-bar w3-black">
+		<ul>
+
+		<li><a href="/doctor">Home</a></li>
+		<li><a href="/doctor/editProfile/<%=id%>"><%=name.split(' ').slice(0,2).join(' ')%> </a></li>
+
+		 <li><a href="/inboxDoc" >Inbox</a></li>
+		 <li><a href="/doctor/app" >  My Appointments  </a></li>
+
+					 <li id="a"><a href="/login" >Logout</a></li>
+
+	</ul>
+	</nav>
+
+	</div>
+<form method="post">
+
+
+
+    <input type="hidden" name="id" value="<%=id%>" placeholder="">
+	<br>	<h4>Day :</h4>  <select name="day">
+	<option value="Sunday">Sunday</option>
+	<option value="Monday">Monday</option>
+	<option value="Tuesday">Tuesday</option>
+	<option value="Wednesday">Wednesday</option>
+	<option value="Thursday">Thursday</option>
+	<option value="Friday">Friday</option>
+	<option value="Saturday">Saturday</option>
+
+
+	</select>
+		<br><br>
+		<h4>Start Time :</h4> <br>
+ 		Hour : <input type="text" name="sh" placeholder="Start Hour">
+   	Minute : <select name="s_m">
+  <option value="00">00</option>
+  <option value="15">15</option>
+  <option value="30">30</option>
+  <option value="45">45</option>
+</select>
+<br><br>	<h4>End Time :</h4><br>
+    			Hour : <input type="text" name="eh" placeholder="End Hour">
+    			Minute : <select name="e_m">
+
+  <option value="00">00</option>
+  <option value="15">15</option>
+  <option value="30">30</option>
+  <option value="45">45</option>
+</select>
+<br><br>
+<h4> Address :</h4> <br> <input onkeyup="geocodeAddress()" id="add"  type="text" name="address" placeholder="Address">
+	<br> <br>
+
+		<input type="hidden" name="lat" id="lat">
+		<input type="hidden" name="lng" id="lng">
+
+    <input  type="submit" value="save">
+    </form>
+	<br/><br/>
+	<table border="1" class="table">
+		<tr>
+
+			<th>Day</th>
+			<th>Start Hour</th>
+			<th>End Hour</th>
+			<th>Location</th>
+			<th>Update</th>
+			<th>Details</th>
+		</tr>
+			<h3><b>Schedule List :</b></h3>
+			<br>
+		<% for(var i = 0; i < userList.length; i++) { %>
+		<tr>
+
+			<td><%= userList[i].day %></td>
+			<td><%= userList[i].s_h %>:<%=userList[i].s_m %></td>
+			<td><%= userList[i].e_h %>:<%=userList[i].e_m %></td>
+			<td><%= userList[i].address %></td>
+			<td><a href="/appointment/edit/<%= userList[i].scheId %>">Edit</a> | <a href="/appointment/delete/<%= userList[i].scheId %>">Delete</a></td>
+			<td><a href="/myappointment/<%= userList[i].scheId%>">View Details</a></td>
+
+		</tr>
+		<% } %>
+	</table>
+
+	<script type="text/javascript">
+
+	function geocodeAddress() {
+	var geocoder = new google.maps.Geocoder();
+	var address = document.getElementById("add").value
+
+	geocoder.geocode({'address': address}, function(results, status) {
+		if (status === 'OK') {
+			lat = results[0].geometry.location.lat();
+			lng = results[0].geometry.location.lng();
+			console.log(lat,lng);
+			document.getElementById("lat").value = lat;
+			document.getElementById("lng").value = lng;
+
+		}
+		// else {
+		// 	alert('Geocode was not successful for the following reason: ' + status);
+		// }
+	});
+}
+	</script>
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUYexDcbuYia1G0BmiCeta44tFgCEM6jI">
+  </script>
+</body>
+</html>

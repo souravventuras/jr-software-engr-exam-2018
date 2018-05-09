@@ -1,0 +1,80 @@
+  <!DOCTYPE html>
+  <html>
+  <head>
+  <title>Confirmation</title>
+  </head>
+  <body>
+
+  <p>Your Appointment Serial Is : <%=serial%> </p>
+  <input type="hidden" id="srl" value="<%=serial%>">
+<input type="hidden" id="sh" value="<%=time.sh%>">
+<input type="hidden" id="sm" value="<%=time.sm%>">
+<input type="hidden" id="eh" value="<%=time.eh%>">
+<input type="hidden" id="em" value="<%=time.em%>">
+<p id="app"> </p>
+
+<p id="nav"></p>
+
+<form id="f" method="post">
+  <input type="hidden" name="ph" id="ph" value="">
+  <input type="hidden" name="pm" id="pm" value="">
+  <input type="submit" onclick="confirm()" name="" value="Confirm">
+</form>
+<input type="hidden" id="scheId" name="" value="<%=time.schId%>">
+<input type="hidden" id="date" name="" value="<%=time.date%>">
+
+<input onclick="cancel()" type="button" name="button" value="Cancel">
+
+<script>
+
+function cancel() {
+  scheId = document.getElementById("scheId").value ;
+  date = document.getElementById("date").value ;
+  alert("Your Appointment Has Been Canceled");
+  window.location.replace("/appointment/confirm/"+scheId+"/"+date+"/cancel");
+}
+function confirm() {
+  alert("Your Appointment Has Been Approved");
+
+}
+
+sh=document.getElementById("sh").value;
+sm=document.getElementById("sm").value;
+eh=document.getElementById("eh").value;
+em=document.getElementById("em").value;
+pc=document.getElementById('srl').value;
+sh=parseInt(sh);
+sm=parseInt(sm);
+eh=parseInt(eh);
+em=parseInt(em);
+console.log("confmsg ejs page data : "+sh+" "+sm+" "+eh+" "+em+" "+pc);
+var tt= 60*(eh-sh)+(em-sm);
+console.log(sh+":"+sm+"----"+eh+":"+em);
+if(tt/15>=pc)
+{
+t1=parseInt(pc/4);
+t2=parseInt(pc%4);
+
+ph=sh+t1;
+pm=sm+(t2*15)-15;
+console.log(ph);
+console.log(pm);
+if (pm==60) {
+  pm=0;
+  ph=ph+1;
+}
+if(pm==-15)
+{
+  ph=ph-1;
+  pm=pm+60;
+}
+document.getElementById("app").innerHTML='Your Appointment Time Is :'+ph+':'+pm;
+}
+else{
+  document.getElementById("nav").innerHTML="No Appoinment Available";
+}
+document.getElementById("ph").value = ph;
+document.getElementById("pm").value = pm;
+</script>
+  </body>
+  </html>

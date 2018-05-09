@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Profile</title>
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+
+<style>
+body{
+  background-color: #dbd7ce;
+  font-family: Dapifer;
+
+}
+h2{
+  /*margin-left: 140px;*/
+  text-align: center;
+  color: gray;
+
+  }
+ul {
+    list-style-type: none;
+    margin: 9px;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+    margin-left: 26px;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #111;
+}
+#a{
+  margin-left: 600px;
+}
+</style>
+</head>
+<body>
+
+
+
+  <div class="nav_bar">
+  <!-- Navigation -->
+  <nav class="w3-bar w3-black">
+    <ul>
+
+    <li><a href="/doctor">Home</a></li>
+    <li><a href="/doctor/editProfile/<%=docDetails[0].Userid%>"><%=docDetails[0].Fullname.split(' ').slice(0,2).join(' ')%> </a></li>
+
+
+     <li><a href="/inboxDoc" >Inbox</a></li>
+     <li><a href="/doctor/app" >  My Appointments  </a></li>
+
+           <li id="a"><a href="/login" >Logout</a></li>
+
+
+  </ul>
+  </nav>
+
+  </div>
+
+
+
+
+
+<div class="container">
+
+</div>
+<div class="container">
+
+<table border="1" class="table">
+
+    <tr>
+      <th>Doctor's Name</th>
+
+      <th>Specialist In</th>
+      <th>Phone No</th>
+      <th>Email</th>
+      <th>Password</th>
+      <th>Address</th>
+      <th>Degress</th>
+      <th>Description</th>
+      <th>Edit Profile</th>
+
+
+    </tr>
+    <h2>Profile</h2>
+
+    <% for(var i = 0; i < docDetails.length; i++) { %>
+    <tr>
+      <td><%= docDetails[i].Fullname %></td>
+      <td><%= docDetails[i].specialist %></td>
+
+      <td><%= docDetails[i].Phone %></td>
+      <td><%= docDetails[i].Email %></td>
+      <td><%= docDetails[i].Password %></td>
+      <td><%= docDetails[i].Address %></td>
+      <td><%= docDetails[i].degrees %></td>
+      <td><%= docDetails[i].description %></td>
+      <td><a href="/profile/edit/<%= docDetails[i].Userid %>">Edit</a></td>
+
+
+    </tr>
+    <% } %>
+  </table>
+</div>
+</body>
+</html>

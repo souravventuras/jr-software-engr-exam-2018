@@ -1,0 +1,211 @@
+ <!DOCTYPE html>
+<html>
+<head>
+  <title>Signup</title>
+
+  <style>
+  #signup{
+    position: absolute;
+    color: #474540;
+    margin-top: 34px;
+    margin-left: 470px;
+  }
+  .pac-item{
+    font-size: 2px;
+  }
+  .pac-container{
+    box-shadow: 8px 8px 5px #888888;
+  }
+
+  .footer{
+    position: absolute;
+    margin-top: 840px;
+    margin-left: 480px;
+  }
+  .error{
+    position: absolute;
+    margin-left: 886px;
+    margin-top: 174PX;
+  }
+
+  span{
+    font-size: 20px;
+  }
+  input[type=text]:focus {
+      width: 130%;
+  }
+  input[type=password]:focus {
+      width: 130%;
+  }
+
+  input[type=text] {
+  width: 230px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: #efece6;
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  padding: 12px 20px 12px 40px;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+}
+
+input[type=submit]:hover {
+  /*background-color: #cec9c0;*/
+  border: 5px solid #9b968b;
+  width: 150px;
+}
+input[type=password] {
+    width: 230px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: #efece6;
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+input[type=submit] {
+    width: 130px;
+    height: 40px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: #f7f2e8;
+    border: 3px solid #9b968b;
+    -webkit-transition: width .6s ease-in-out;
+    transition: width .6s ease-in-out;
+
+}
+
+h1{
+  margin-left: 16px;
+}
+
+
+body {
+
+  background: #dbd7ce;
+  font-family: Dapifer;
+
+}
+fieldset {
+  border: none;
+}
+  </style>
+
+</head>
+
+<body>
+  <div id="signup">
+
+    <form method="POST">
+        <h1>Signup</h1>
+<fieldset>
+
+
+        <label name="fullname"> <span>Full Name</span></label> <br>
+        <input type="text" name="name" placeholder="Full Name" id="fn" ><br>
+        <br>
+
+        <label name="username"> <span>User Name</span></label> <br>
+        <input type="text" name="uname" placeholder="User Name" id="un" ><br>
+        <br>
+
+        <label name="address"> <span>Address</span></label> <br>
+        <input type="text" name="address" placeholder="Address" id="address" onkeyup="geocodeAddress()"><br>
+        <input type="hidden" name="lat" id="lat">
+        <input type="hidden" name="lng" id="lng">
+
+        <br>
+
+        <label name="email"> <span>Email</span></label> <br>
+        <input type="text" name="email" placeholder="Email" id="mail" onblur="return validateEmail(email);" ><span id="me"> </span><br>
+        <br>
+
+        <label name="phone"> <span>Phone</span></label> <br>
+        <input type="text" name="phone" placeholder="Phone" id="ph" ><br>
+        <br>
+
+        <label name="password"> <span>Password</span></label> <br>
+        <input type="password" name="password" placeholder="Password" id="ps" onkeyup="validatePass()" ><span id="pss"></span><br>
+        <br>
+
+        <label name="cpass"> <span>Confirm Password</span></label> <br>
+        <input type="password" name="c_pass" placeholder="Confirm Password" id="cps" onkeyup="passMatch()" ><span id="cpss"></span><br><br>
+
+        <label name="utype"> <span>User Type</span></label> <br>
+        <input type="radio" name="type" value="doctor"> Doctor<br>
+        <input type="radio" name="type" value="patient"> Patient<br><br>
+
+        <input type="submit" name="submit" value="Register">
+
+</fieldset>
+</form>
+
+  </div>
+
+
+
+
+
+
+<br>
+<div class="error">
+
+  <ul>
+  <% errors.forEach(function(err){ %>
+    <li><%= err.msg %></li>
+  <% }) %>
+  </ul>
+</div>
+<br>
+<div class="footer">
+  <span id="login">Already Have an Account?</span>
+  <a id = "href" href="/login">Login</a>
+  <br><br><br><br>
+  <br><br><br><br>
+
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+function initialize() {
+
+var input = document.getElementById("address");
+var autocomplete = new google.maps.places.Autocomplete(input);
+autocomplete.setComponentRestrictions({'country': 'bd'});
+
+}
+function geocodeAddress() {
+var geocoder = new google.maps.Geocoder();
+var address = document.getElementById("address").value
+
+geocoder.geocode({'address': address}, function(results, status) {
+  if (status === 'OK') {
+    lat = results[0].geometry.location.lat();
+    lng = results[0].geometry.location.lng();
+    console.log(lat,lng);
+    document.getElementById("lat").value = lat;
+    document.getElementById("lng").value = lng;
+
+  }
+  // else {
+  // 	alert('Geocode was not successful for the following reason: ' + status);
+  // }
+});
+}
+
+
+google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUYexDcbuYia1G0BmiCeta44tFgCEM6jI">
+</script>
+</body>
+</html>

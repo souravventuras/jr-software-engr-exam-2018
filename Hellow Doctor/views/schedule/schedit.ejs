@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style>
+	body{
+		background-color: #dbd7ce;
+		font-family: Dapifer;
+
+}
+
+	h2{
+		/*margin-left: 140px;*/
+		margin-left: 20px;
+		color: gray;
+
+		}
+	ul {
+			list-style-type: none;
+			margin: 9px;
+			padding: 0;
+			overflow: hidden;
+			background-color: #333;
+	}
+
+	li {
+			float: left;
+	}
+
+	li a {
+			display: block;
+			color: white;
+			text-align: center;
+			padding: 14px 16px;
+			text-decoration: none;
+	}
+
+	li a:hover {
+			background-color: #111;
+	}
+	#a{
+		margin-left: 793px;
+	}
+	</style>
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+</head>
+<body>
+
+	<div class="nav_bar">
+	<!-- Navigation -->
+	<nav class="w3-bar w3-black">
+	  <ul>
+	  <li><a href="/doctor">Home</a></li>
+	  <li><a href="/doctor/editProfile/<%=id%>"><%=name.split(' ').slice(0,2).join(' ')%> </a></li>
+
+	   <li><a href="/inboxDoc" >Inbox</a></li>
+	   <li><a href="/doctor/app" >  My Appointments  </a></li>
+
+	         <li id="a"><a href="/logout" >Logout</a></li>
+
+	</ul>
+	</nav>
+
+	</div>
+
+	<h2>Edit Schedule</h2>
+
+
+    <form method="post">
+        <input type="hidden" name="appid" value="<%=appdtls[0].scheId%>">
+				<br><br>
+				<h4>Day :</h4> <br>
+		 <select name="day">
+			 <option value="<%=appdtls[0].day%>"><%=appdtls[0].day%></option>
+		  	<option value="Sunday">Sunday</option>
+		  	<option value="Monday">Monday</option>
+		  	<option value="Tuesday">Tuesday</option>
+		  	<option value="Wednesday">Wednesday</option>
+		  	<option value="Thursday">Thursday</option>
+		  	<option value="Friday">Friday</option>
+		  	<option value="Saturday">Saturday</option>
+		  	</select>
+				<br><br>
+	 <h4>Start Time :</h4> <br><br>
+   Hour : <input type="text" name="sh" value="<%=appdtls[0].s_h%>">
+   Minute: <select name="s_m" value="">
+  <option value="<%=appdtls[0].s_m%>"><%=appdtls[0].s_m%></option>
+	<option value="00">00</option>
+  <option value="15">15</option>
+  <option value="30">30</option>
+  <option value="45">45</option>
+</select>
+<br><br><br>	<h4>End Time :</h4> <br><br>
+		Hour : <input type="text" name="eh" value="<%=appdtls[0].e_h%>" >
+    Minute :<select name="e_m" value="">
+  <option value="<%=appdtls[0].e_m%>"><%=appdtls[0].e_m%></option>
+  <option value="00">00</option>
+  <option value="15">15</option>
+  <option value="30">30</option>
+  <option value="45">45</option>
+</select>
+<br><br>
+<h4> Address :</h4> <br> <input type="text" name="address" value="<%=appdtls[0].address%>">
+	<br> <br>
+
+    <input type="submit" value="save">
+
+    </form>
+
+
+	<script type="text/javascript" src="jquery.js"></script>
+</body>
+</html>

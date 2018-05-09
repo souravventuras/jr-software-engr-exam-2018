@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style>
+	.image{
+		position: relative;
+		margin-left: 1070px;
+		margin-top: 20px;
+		opacity: 0.6;
+	}
+	#login{
+		position: absolute;
+		color: #474540;
+		top: 90px;
+		left: 470px;
+	}
+	span{
+	  font-size: 20px;
+	}
+	input[type=text]:focus {
+	    width: 130%;
+	}
+	input[type=password]:focus {
+	    width: 130%;
+	}
+
+	input[type=text] {
+	width: 230px;
+	box-sizing: border-box;
+	border: 2px solid #ccc;
+	border-radius: 4px;
+	font-size: 16px;
+	background-color: #efece6;
+	background-position: 10px 10px;
+	background-repeat: no-repeat;
+	padding: 12px 20px 12px 40px;
+	-webkit-transition: width 0.4s ease-in-out;
+	transition: width 0.4s ease-in-out;
+}
+
+input[type=submit]:hover {
+	/*background-color: #cec9c0;*/
+	border: 5px solid #9b968b;
+	width: 150px;
+}
+input[type=password] {
+    width: 230px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: #efece6;
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+input[type=submit] {
+    width: 130px;
+		height: 40px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    font-size: 16px;
+		background-color: #f7f2e8;
+	 	border: 3px solid #9b968b;
+    -webkit-transition: width .6s ease-in-out;
+    transition: width .6s ease-in-out;
+
+}
+
+h1{
+	margin-left: 16px;
+}
+
+
+body {
+
+  background: #dbd7ce;
+	font-family: Dapifer;
+
+}
+fieldset {
+  border: none;
+}
+#notReg{
+
+	position: relative;
+	left: 18px;
+
+}
+#href{
+	position: relative;
+	left: 18px;
+	font-size: 23px;
+
+}
+	</style>
+	<title>Login</title>
+</head>
+<body>
+
+		<div class="image">
+			<img width="170" height="100" src="bandage.png">
+		</div>
+    <div id="login">
+      <form  method="POST">
+
+        <h1>Login</h1>
+				<fieldset>
+
+				<label name="username"> <span>User Name</span></label> <br>
+      		<input type="text" name="username" placeholder="User Name"> <br><br>
+
+				<label name="password"> <span>Password</span></label> <br>
+      		<input type="password" name="password" placeholder="Password" >
+      <br> <br>
+      <input type="submit" name="submit" value="Login">
+		</fieldset>
+</form><br>
+<script>
+if ("<%-message %>"!="") {
+	alert("<%-message %>");
+}
+</script> <br>
+    <span id="notReg">Not Registered Yet?</span>
+    <a id = "href" href="/login/create">Create an Account</a>
+
+
+    </div>
+
+
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+   <meta charset="utf-8">
+
+<style>
+body{
+  background-color: #dbd7ce;
+  font-family: Dapifer;
+
+}
+h1{
+  margin-left: 140px;
+  color: gray;
+
+  }
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+}
+
+li a {
+
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 14px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #111;
+}
+#a{
+  margin-left: 632px;
+margin-top: -1px;
+}
+.download{
+margin-left: 20px;
+font-style: italic;
+text-decoration: underline;
+}
+.download a{
+  font-style: italic;
+  text-decoration: underline;
+
+}
+#img{
+  position: absolute;
+  background-color: #f7f5f2;
+  border: 4px solid #424037;
+}
+.prescription{
+position: absolute;
+margin-left: 345px;
+}
+span{
+  font-size: 80px;
+  color: #0fe23a;
+}
+
+
+</style>
+</head>
+
+<body>
+
+  <div class="nav_bar">
+  <!-- Navigation -->
+  <nav class="w3-bar w3-black">
+    <ul>
+
+
+    <li><a href="/patHome">Home</a></li>
+    <li><a href="/profile/<%=presInfo[0].patId%>"> <%=name%> </a></li>
+    <li><a href="/findDoctor/alldoc" >Find Doctor</a></li>
+    <li><a href="/pres/archive" >Archive</a></li>
+    <li><a href="/inboxPat" >Inbox</a></li>
+    <li><a href="/myappointmentPat/<%=presInfo[0].patId%>">My Appointment</a></li>
+    <li id="a"><a href="/logout" >Logout</a></li>
+  </ul>
+  </nav>
+
+  </div>
+
+    <%
+    var pinf=JSON.stringify(presInfo);
+    ///console.log(pinf);
+    %>
+
+
+
+
+
+</div>
+<div aling class="prescription">
+
+  <h1 id="ap"> <span>.</span>  Active Prescription</h1>
+  <img id="img" height="650" width="550">
+
+</div>
+<br><br>
+<div class="download">
+  <a download="Prescription.png" href="<%-presInfo[presInfo.length-1].img%>" title="ImageName" style="color:#3f4144">
+      <img alt= "Click to Download This Prescription" src="">
+  </a>
+
+</div>
+
+<script>
+  var imgSrc = "<%-presInfo[presInfo.length-1].img%>";
+  console.log(imgSrc);
+  document.getElementById("img").src= imgSrc;
+</script>
+
+</body>
+</html>

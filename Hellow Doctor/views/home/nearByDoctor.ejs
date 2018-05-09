@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body >
+
+    <input id="slider" onchange="distance()"  type="range" name="a"  min="0" max="10">
+    <br>
+<input onclick ="minus()" type="button" value="-">
+<input onclick="plus()" type="button" value="+">
+<br>
+Distance Range : <input type="number" onkeyup="distance()" id="text" value="" placeholder="(km)" min="1" max="350"> km
+<br><hr>
+<h3 id="c"></h3>
+<hr>
+<p id="p"></p>
+    <br>
+
+
+
+  <script type="text/javascript">
+
+  docList = (<%-JSON.stringify(docList)%>);
+  distance();
+
+  function distance() {
+    var count = 0;
+    var docs = "";
+    for (var i = 0; i < docList.length; i++) {
+
+    lat1= docList[i].lat;
+    lng1= docList[i].lng;
+    lat2= "<%=lat%>";
+    lng2= "<%=lng%>";
+    var R = 6371;
+    var dLat = deg2rad(lat2-lat1);
+    var dLon = deg2rad(lng2-lng1);
+    var a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.sin(dLon/2) * Math.sin(dLon/2);
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+    var d = [];
+    d[i] = R * c;
+    if(d[i]%1<0.5)
+    d[i] = parseInt(d[i])+0.5;
+    if(d[i]%1>0.5)
+    d[i] = parseInt(d[i])+1;
+    function deg2rad(deg) {
+    return deg * (Math.PI/180);
+  }
+  if (document.getElementById("text").value=="") {
+    a = document.getElementById("slider").value;
+  }
+  else {
+    a = document.getElementById("text").value;
+    document.getElementById("slider").value = a;
+
+  }
+  if (d[i]<=a){
+      count+=1;
+      docs+="<br>"+docList[i].Fullname+" ("+docList[i].specialist+")"+"<br>"+"<br>"+"On "+docList[i].day+" From "+docList[i].s_h+":"+docList[i].s_m+" to "+docList[i].e_h+":"+docList[i].e_m+"<br>"+"<br>"+"At : "+docList[i].address+"<br>"+"<br>"+d[i]+" km from your home address ("+"<%=patAddress%>"+")"+"<br>"+"<br>"+"<hr>";
+  }
+}
+count = "Total Results : "+ count;
+document.getElementById("c").innerHTML = count;
+
+document.getElementById("p").innerHTML = docs;
+}
+function plus() {
+  var x =document.getElementById("slider").value;
+  var y = parseInt(x);
+  document.getElementById("slider").value = y+1;
+  distance();
+  console.log(document.getElementById("slider").value);
+}
+function minus() {
+  document.getElementById("slider").value -=1;
+  distance();
+  console.log(document.getElementById("slider").value);
+}
+
+
+
+      </script>
+  </body>
+</html>
