@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+    body{
+      background-color: #dbd7ce;
+      font-family: Dapifer;
+
+    }
+    h2{
+      /*margin-left: 140px;*/
+      text-align: center;
+      color: gray;
+
+      }
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #333;
+    }
+
+    li {
+        float: left;
+        margin-left: 26px;
+    }
+
+    li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+
+    li a:hover {
+        background-color: #111;
+    }
+    #a{
+      margin-left: 600px;
+    }
+    </style>
+  </head>
+  <body>
+
+    <div class="nav_bar">
+    <!-- Navigation -->
+    <nav class="w3-bar w3-black">
+      <ul>
+
+      <li><a href="/doctor">Home</a></li>
+      <!-- <li><a href="/doctor/editProfile/<%=id.id%>"><%=id.name%> </a></li> -->
+      <li><a href="/doctor/editProfile/<%=id.id%>"><%=id.name.split(' ').slice(0,2).join(' ')%> </a></li>
+
+       <li><a href="/inboxDoc" >Inbox</a></li>
+       <li><a href="/doctor/app" >  My Appointments  </a></li>
+
+             <li id="a"><a href="/login" >Logout</a></li>
+
+    </ul>
+    </nav>
+
+    </div>
+
+      <h3>Inbox</h3>
+      <br><br>
+      <hr>
+
+    <% for(var i = 0; i < msgList.length; i++) {%>
+
+      <br>
+      
+      <% if(msgList[i].status == 0)
+      msg = " (New Message)"%>
+      <a href="/allMsgDoc/<%=msgList[i].senderId%>"><%=msgList[i].Fullname + msg%></a>
+<br><hr>
+
+      <%msg = ""%>
+
+      <% } %>
+  </body>
+</html>

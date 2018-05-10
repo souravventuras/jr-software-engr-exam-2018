@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <html lang="en">
+   <meta charset="utf-8">
+
+   <style>
+
+
+
+       body{
+         background-color: #dbd7ce;
+         font-family: Dapifer;
+
+       }
+       h2{
+         /*margin-left: 140px;*/
+         text-align: center;
+         color: gray;
+
+         }
+       ul {
+           list-style-type: none;
+           margin: 0;
+           padding: 0;
+           overflow: hidden;
+           background-color: #333;
+       }
+
+       li {
+           float: left;
+       }
+
+       li a {
+           display: block;
+           color: white;
+           text-align: center;
+           padding: 14px 16px;
+           text-decoration: none;
+       }
+
+       li a:hover {
+           background-color: #111;
+       }
+       #a{
+         margin-left: 823px;
+       }
+
+
+       .prescription{
+       position: absolute;
+       margin-left: 345px;
+       margin-top: -110px;
+       }
+       span{
+         font-size: 80px;
+         color: #0fe23a;
+       }
+   #img{
+     position: absolute;
+     left: 50px;
+     top: 180px;
+     background-color: #fffff3;
+     border: 3px solid #373835;
+   }
+   </style>
+
+</head>
+
+<body>
+
+<div class="nav_bar">
+<!-- Navigation -->
+<nav class="w3-bar w3-black">
+  <ul>
+
+
+  <li><a href="/patHome">Home</a></li>
+  <li><a href="/findDoctor" >Find Doctor</a></li>
+  <li><a href="/pres/archive" >Archive</a></li>
+  <li><a href="/inboxPat" >Inbox</a></li>
+  <li id="a"><a href="/login" >Logout</a></li>
+</ul>
+</nav>
+
+</div>
+
+ <h1 id="ap"> </h1>
+</div>
+<div class="prescription">
+  <img id="img" src=<%=presInfo[pIdx].img%> height="650" width="550">
+
+</div>
+
+
+
+
+
+</body>
+</html>

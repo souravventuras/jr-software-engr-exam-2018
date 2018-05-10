@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <html lang="en">
+   <meta charset="utf-8">
+<style>
+
+body{
+  background-color: #dbd7ce;
+  font-family: Dapifer;
+
+}
+h1{
+  margin-left: 140px;
+  color: gray;
+
+  }
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #111;
+}
+#select{
+  position: absolute;
+  background-color: #fffff3;
+  font-size: 16px;
+  padding: 12px 20px 12px 10px;
+  border: 3px solid #DDC;
+  height: 7%;
+  margin-top: -82px;
+  margin-left: 50px;
+  margin-bottom: 100px;
+
+
+  box-shadow: 8px 8px 5px #888888;
+}
+#a{
+  margin-left: 823px;
+}
+#search {
+  background-color: #fffff3;
+  /*background-image: url("search.png");*/
+  background-position: 341px 12px;
+  background-repeat: no-repeat;
+  width: 60%;
+
+  font-size: 22px;
+  padding: 12px 20px 12px 10px;
+  border: 2px solid #DDC;
+  margin-bottom: 12px;
+  margin-top: 220px;
+  margin-left: 24%;
+  border-radius: 4px;
+  box-shadow: 8px 8px 5px #888888;
+}
+.ui-menu {
+  position: relative;
+  font-size: 16px;
+  left: 311px;
+  top: 332px;
+  width: 700px;
+}
+.ui-menu-item {
+    position: relative;
+    display: block;
+    clear: both;
+    font-weight: normal;
+    line-height: 28px;
+    width: 100%;
+    color: #55555;
+    white-space: nowrap;
+    text-decoration: none;
+    left: 0px;
+}
+
+
+
+</style>
+
+</head>
+
+<body>
+  <p id = "pa"></p>
+  <div class="nav_bar">
+  <!-- Navigation -->
+  <nav class="w3-bar w3-black">
+    <ul>
+
+
+    <li><a href="/patHome">Home</a></li>
+    <li><a href="/findDoctor/alldoc" >Find Doctor</a></li>
+    <li><a href="/pres/archive" >Archive</a></li>
+    <li><a href="/inboxPat" >Inbox</a></li>
+    <li id="a"><a href="/logout" >Logout</a></li>
+  </ul>
+  </nav>
+
+  </div>
+
+
+
+<input type="text"  id="search" name="search" placeholder="Search A Doctor Here" value=""><br><br>
+<select id="select" name="" onchange="select()">
+<option value="all" name="all">All Doctors</option>
+<option value="Cardiologist" name=="Cardiologist">Cardiologist</option>
+<option value="Dentist" name="Dentist">Dentist</option>
+<option value="Medicine" name="Medicine">Medicine</option>
+
+</select>
+
+<br>
+
+<br>
+<%
+  var docName = []
+  var docId = []
+  var sp = []
+  var docList=[]
+  for (var i = 0; i < docList1.length; i++) {
+  docName[i] = docList1[i].Fullname + " (" + docList1[i].specialist + ")"
+  docId[i] = docList1[i].Userid
+  docList[i] = docList1[i]
+
+}
+%>
+
+    <a href="/nearByDoctor">See Who Are Nearby</a>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
+  <script  src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+  <script  src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
+  <script>
+docName1 = "<%-docName%>";
+docId1 = "<%-docId%>";
+console.log("<%-docList.length%>");
+var docName = [];
+var docId = [];
+docName= docName1.split(',');
+docId= docId1.split(',');
+var docList = [];
+for (var i = 0; i < docName.length; i++) {
+
+    docList.push({
+      label: docName[i],
+      value: docId[i]
+    });
+}
+
+
+  $(document).ready(function(){
+      $("#search").autocomplete({ source:docList, select: function(event, ui) {
+        event.preventDefault();
+        temp1 = ui.item.label;
+        temp = temp1.split('(');
+        $("#search").val(temp[0]);
+        goToProfile(ui.item.value);
+        console.log("()");
+        } });
+
+  });
+
+function goToProfile(id) {
+//  var i = docName.indexOf(name);
+  window.location.href = '/doctor/profile/' + id ;
+
+}
+
+var a;
+
+function select(){
+
+ var xhttp = new XMLHttpRequest();
+ xhttp.onreadystatechange = function() {
+   if (this.readyState == 4 && this.status == 200) {
+     a=JSON.parse(this.responseText);
+
+   }
+   console.log(docList);
+   console.log(a.result[0].Fullname);
+   docList = [];
+   for (var i = 0; i < a.result.length; i++) {
+     if (document.getElementById("select").value == 'all') {
+       docList.push({
+         label: a.result[i].Fullname+" ("+a.result[i].specialist+")",
+         value: a.result[i].Userid
+       });
+     }
+     else {
+       docList.push({
+         label: a.result[i].Fullname,
+         value: a.result[i].Userid
+       });
+     }
+
+   }
+   $(document).ready(function(){
+       $("#search").autocomplete({ source:docList, select: function(event, ui) {
+             event.preventDefault();
+             temp1 = ui.item.label;
+             temp = temp1.split('(');
+             event.preventDefault();
+             $("#search").val(temp[0]);
+             goToProfile(ui.item.value);
+             console.log("()");
+         } });
+
+   });
+   console.log(docList);
+
+ };
+
+ var url="/findDoctor/"+document.getElementById('select').value;
+ xhttp.open("GET",url, true);
+ console.log(url);
+ xhttp.send();
+
+}
+
+  </script>
+</body>
+</html>

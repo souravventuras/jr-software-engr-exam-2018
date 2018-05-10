@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <style media="screen">
+  .date{
+    color: #626770;
+  }
+
+
+  body{
+    background-color: #dbd7ce;
+    font-family: Dapifer;
+
+  }
+  h1{
+    margin-left: 140px;
+    color: gray;
+
+    }
+  ul {
+      list-style-type: none;
+      margin: 7px;
+      padding: 0;
+      overflow: hidden;
+      background-color: #333;
+  }
+
+  li {
+      float: left;
+  }
+
+  li a {
+
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 14px;
+      text-decoration: none;
+      font-size: 16px;
+  }
+
+  li a:hover {
+      background-color: #111;
+  }
+  #a{
+    margin-left: 837px;
+      margin-top: -1px;
+  }
+  </style>
+</head>
+<body>
+  <div class="nav_bar">
+  <!-- Navigation -->
+  <nav class="w3-bar w3-black">
+    <ul>
+
+
+    <li><a href="/patHome">Home</a></li>
+    <li><a href="/findDoctor/alldoc" >Find Doctor</a></li>
+    <li><a href="/pres/archive" >Archive</a></li>
+    <li><a href="/inboxPat" >Inbox</a></li>
+    <li id="a"><a href="/logout" >Logout</a></li>
+  </ul>
+  </nav>
+
+  </div>
+
+
+<br><br>
+<h4>Select Appointment Date</h4>
+
+<input type="date" onchange="fff()" id="selDate">
+<br>
+<form id="f"  method="post" >
+<input type="hidden" name="dId" value="<%=id%>">
+<input type="hidden" id="shd" name="finalDay" value="">
+<input type="hidden" id="date" name="date" value="">
+<input type="submit" onclick="myFunction()" name="" value="Select Date">
+
+</form>
+
+<br>
+<p id="p"></p>
+
+<h2>Schedule :</h2>
+<script>
+var selDate;
+var selDate2;
+
+
+var finalDay;
+
+var date = Date();
+var year =  date.substr(11,4);
+var month =  date.substr(4,3);
+var bar = date.substr(0,3);
+year = parseInt(year);
+
+
+
+if(bar=='Sun')
+bar =1;
+
+else if(bar=='Mon')
+bar = 2;
+
+else if(bar=='Tue')
+bar = 3;
+
+else if(bar=='Wed')
+bar = 4;
+
+else if(bar=='Thu')
+bar = 5;
+
+else if(bar=='Fri')
+bar = 6;
+
+else if(bar=='Sat')
+bar = 7;
+
+else
+console.log(bar);
+
+console.log(month);
+
+if(month=='Jan')
+month=1;
+else if(month=='Feb')
+month=2;
+else if(month=='Mar')
+month=3;
+else if(month=='Apr')
+month=4;
+else if(month=='May')
+month=5;
+else if(month=='Jun')
+month=6;
+else if(month=='Jul')
+month=7;
+else if(month=='Aug')
+month=8;
+else if(month=='Sep')
+month=9;
+else if(month=='Oct')
+month=10;
+else if(month=='Nov')
+month=11;
+else
+month=12;
+console.log(month);
+var day =  date.substr(8,2);
+day=day*1;
+
+
+function fff() {
+  selDate2 = document.getElementById("selDate").value;
+  console.log("ashik "+selDate2);
+    //document.getElementById("date").value=document.getElementById("selDate").value;
+    localStorage.setItem('selDate', selDate2);
+}
+ function pass(sch,sh,sm,eh,em){
+
+    var a=localStorage.getItem("selDate");
+           var url= "/appointment/confirm/"+sch+"/"+a+"/"+sh+"/"+sm+"/"+eh+"/"+em;
+
+            window.open(url);
+    // document.getElementById("conf").getAttribute("href")=url;
+                    }
+function myFunction() {
+
+
+
+     selDate = document.getElementById("selDate").value;
+     console.log("Date : "+selDate);
+
+    var selDay =  selDate.substr(8,2);
+         // document.getElementById("demo").innerHTML = selDay;
+
+    var selMonth =  selDate.substr(5,2);
+    var selYear =  selDate.substr(0,4);
+    selMonth = parseInt(selMonth);
+    selYear = parseInt(selYear);
+    selDay = parseInt(selDay);
+
+    console.log(selMonth+selDay);
+    if(selMonth>month)
+    {
+
+if(month==1)
+selDay= parseInt(selDay)+31;
+else if(month==2)
+selDay=parseInt(selDay)+28;
+else if(month==3)
+selDay=parseInt(selDay)+31;
+else if(month==4)
+selDay=parseInt(selDay)+30;
+else if(month==5)
+selDay=parseInt(selDay)+31;
+else if(month==6)
+selDay=parseInt(selDay)+30;
+else if(month==7)
+selDay=parseInt(selDay)+31;
+else if(month==8)
+selDay=parseInt(selDay)+31;
+else if(month==9)
+selDay=parseInt(selDay)+30;
+else if(month==10)
+selDay=parseInt(selDay)+31;
+else if(month==11)
+selDay=parseInt(selDay)+30;
+else
+selDay=parseInt(selDay)+31;
+
+    }
+
+    var temp = selDay-day;
+    if (temp<0) {
+      alert("Please select a valid day, you can't go to the past ;)");
+    }
+    else if (temp>6) {
+      alert("Please select a day which is nearer and not more than 6 days from today");
+    }
+    else {
+
+    var newDay = parseInt(bar)+temp;
+    console.log(1+newDay);
+
+    if(newDay>7)
+    { if(newDay%7==0)
+      finalDay=7;
+
+      else
+    	finalDay = newDay%7;
+
+    }
+    else {
+      finalDay = newDay;
+    }
+
+
+    if(finalDay==1)
+    finalDay='Sunday';
+    else if(finalDay==2)
+    finalDay='Monday';
+    else if(finalDay==3)
+    finalDay='Tuesday';
+    else if(finalDay==4)
+    finalDay='Wednesday';
+    else if(finalDay==5)
+    finalDay='Thursday';
+    else if(finalDay==6)
+    finalDay='Friday';
+    else if(finalDay==7)
+    finalDay='Saturday';
+    else
+    finalDay='';
+  document.getElementById("shd").value = finalDay;
+
+  document.getElementById("date").value = selDate;
+  //document.getElementById("f").action = "/doctor/profile/"+selDate;
+
+  //document.getElementById("f").submit();
+
+}
+
+}
+
+</script>
+
+<br>
+<table border="1" class="table">
+  <tr>
+    <th>Day</th>
+    <th>Start Hour</th>
+    <th>Location</th>
+    <th>Appointment</th>
+
+  </tr>
+
+  <% for(var i = 0; i < docDetails.length; i++) { %>
+  <tr>
+    <td><%= docDetails[i].day %></td>
+    <td><%= docDetails[i].s_h %>:<%=docDetails[i].s_m %></td>
+    <td><%= docDetails[i].address %></td>
+    <td><a href="" onclick="pass(<%= docDetails[i].scheId%>, <%= docDetails[i].s_h%>, <%= docDetails[i].s_m%>,<%= docDetails[i].e_h%>, <%= docDetails[i].e_m%>)">Confirm Appointment</a></td>
+
+  </tr>
+  <% } %>
+</table>
+
+</body>
+</html>

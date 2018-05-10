@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+<style media="screen">
+
+body{
+	background-color: #dbd7ce;
+	font-family: Dapifer;
+
+}
+#signup{
+	position: absolute;
+	color: #474540;
+	margin-top: 34px;
+	margin-left: 470px;
+}
+
+
+span{
+	font-size: 20px;
+}
+input[type=text]:focus {
+		width: 130%;
+}
+input[type=password]:focus {
+		width: 130%;
+}
+
+input[type=text] {
+width: 230px;
+box-sizing: border-box;
+border: 2px solid #ccc;
+border-radius: 4px;
+font-size: 16px;
+background-color: #efece6;
+background-position: 10px 10px;
+background-repeat: no-repeat;
+padding: 12px 20px 12px 40px;
+-webkit-transition: width 0.4s ease-in-out;
+transition: width 0.4s ease-in-out;
+}
+
+input[type=submit]:hover {
+/*background-color: #cec9c0;*/
+border: 5px solid #9b968b;
+width: 150px;
+}
+input[type=password] {
+	width: 230px;
+	box-sizing: border-box;
+	border: 2px solid #ccc;
+	border-radius: 4px;
+	font-size: 16px;
+	background-color: #efece6;
+	background-position: 10px 10px;
+	background-repeat: no-repeat;
+	padding: 12px 20px 12px 40px;
+	-webkit-transition: width 0.4s ease-in-out;
+	transition: width 0.4s ease-in-out;
+}
+
+input[type=submit] {
+	width: 130px;
+	height: 40px;
+	box-sizing: border-box;
+	border-radius: 4px;
+	font-size: 16px;
+	background-color: #f7f2e8;
+	border: 3px solid #9b968b;
+	-webkit-transition: width .6s ease-in-out;
+	transition: width .6s ease-in-out;
+
+}
+
+h1{
+margin-left: 16px;
+}
+
+
+
+fieldset {
+border: none;
+}
+
+ul {
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+		overflow: hidden;
+		background-color: #333;
+}
+
+li {
+		float: left;
+}
+
+li a {
+		display: block;
+		color: white;
+		text-align: center;
+		padding: 14px 16px;
+		text-decoration: none;
+}
+
+li a:hover {
+		background-color: #111;
+}
+#a{
+	margin-left: 694px;
+}
+</style>
+</head>
+<body>
+
+	<div class="nav_bar">
+	<!-- Navigation -->
+	<nav class="w3-bar w3-black">
+	  <ul>
+	  <li><a href="/doctor">Home</a></li>
+	  <li><a href="/doctor/editProfile/<%=docDetails[0].Userid%>"><%=docDetails[0].Fullname.split(' ').slice(0,2).join(' ')%> </a></li>
+
+	   <li><a href="/inboxDoc" >Inbox</a></li>
+	   <li><a href="/doctor/app" >  My Appointments  </a></li>
+		 <li id="a"><a href="/logout" >Logout</a></li>
+
+
+	</ul>
+	</nav>
+
+	</div>
+<div id="signup">
+	<form method="POST">
+		<h1>Edit Profile</h1>
+
+		<fieldset>
+        <input type="hidden" name="Userid" value="<%=docDetails[0].Userid%>">
+
+				<label name="fullname"> <span>Full Name</span></label> <br>
+
+		 <input type="text" name="fullname" value="<%=docDetails[0].Fullname%>">
+	<br> <br>
+
+	<label name="username"> <span>User Name</span></label> <br>
+	<input type="text" name="username" value="<%=docDetails[0].Username%>">
+	<br> <br>
+
+	<label name="specialist"> <span>Specialist Name</span></label> <br>
+	 <input type="text" name="specialist" value="<%=docDetails[0].specialist%>">
+	<br> <br>
+
+	<label name="phone"> <span>Phone</span></label> <br>
+	<input type="text" name="phone" value="<%=docDetails[0].Phone%>">
+	<br> <br>
+
+	<label name="email"> <span>Email</span></label> <br>
+	<input type="text" name="email" value="<%=docDetails[0].Email%>">
+	<br> <br>
+
+	<label name="password"> <span>Password</span></label> <br>
+	<input type="text" name="password" value="<%=docDetails[0].Password%>">
+	<br> <br>
+
+	<label name="address"> <span>Address</span></label> <br>
+	 <input type="text" name="address" value="<%=docDetails[0].Address%>">
+	<br> <br>
+
+	<label name="degrees"> <span>Degrees</span></label> <br>
+	 <input type="text" name="degrees" value="<%=docDetails[0].degrees%>">
+	<br> <br>
+
+	<label name="description"> <span>description</span></label> <br>
+	<input type="text" name="description" value="<%=docDetails[0].description%>">
+	<br> <br>
+
+    <input type="submit" value="save">
+</fieldset>
+    </form>
+</div>
+
+
+
+
+
+</body>
+</html>

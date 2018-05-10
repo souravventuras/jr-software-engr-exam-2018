@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<form id="post" method="post">
+  <h3><%=info.Fullname%> : </h4>
+    Select Your Post Type : <select name="category">
+                <option value="others">Others</option>
+                <option value="help">Help Post</option>
+                <option value="inquery">Inquery Post</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+                </select> <br><br>
+  <textarea onkeyup="enable()" id="ta" rows="5" cols="60" name="post"></textarea> <br><br>
+  Write Some Tags (Optional) : <input type="text" name="tags" value=""><br><br>
+  <input type="hidden" name="time" id="time" value="">
+  <input id="postButton" type="submit" name="" value="Post">
+<br>
+</form>
+<br>
+<h3 id = "r">Recent Post</h3>
+<hr><br>
+<div id="postData"></div>
+<script type="text/javascript">
+    function enableC(id) {
+      var id1 = id.substr(1);
+      console.log(id1);
+      var id2 = document.getElementById(''+id).value;
+      if (id2.length>3) {
+        document.getElementById(id1).disabled = false;
+        document.getElementById(id).addEventListener("keyup", function(event) {
+        event.preventDefault();
+        if (event.keyCode == 13) {
+       document.getElementById(id1).click();
+  }
+});
+      }
+      else {
+        document.getElementById(id1).disabled = true;
+      }
+    }
+    function enable() {
+
+        if (document.getElementById("ta").value.length < 5) {
+          document.getElementById("postButton").disabled = true;
+
+
+        }
+        else {
+          document.getElementById("postButton").disabled = false;
+          document.getElementById("ta").addEventListener("keyup", function(event) {
+          event.preventDefault();
+          if (event.keyCode == 13) {
+         document.getElementById("postButton").click();
+    }
+});
+
+        }
+    }
+
+    var postList = (<%-JSON.stringify(posts)%>);
+    var d1 = new Date();
+    d1 = d1.toString();
+    d  = d1.substr(0,24);
+    document.getElementById("time").value = d;
+    var postData = "";
+    var x;
+    for (var i = 0; i < postList.length; i++) {
+    x = postList[i].postId;
+      console.log(x);
+    postData += "<br>"+"<br>"+"<br>"+postList[i].pTime+"<br>"+"<h4>"+postList[i].Fullname + " : "+"</h4>"+ postList[i].post + "<br>"+"<br>"+ "<textarea onkeyup='enableC(this.id)' id ='e"+postList[i].postId+"' rows='2' cols='40'></textarea>"+"<input disabled id ='"+postList[i].postId+"' onclick='comment(this.id)' type='button' value='Comment'>"+"<br>"+ "<br>";
+    postData += "<input id ='vc"+postList[i].postId+"' onclick='viewComment(this.id)' type='button' value='Load Comments'>"+"<br><br>"+"<p id ='com"+postList[i].postId+"' ></p>"+"<br>"+"<br>"+"<hr>"+"<hr>";;
+    console.log(x);
+    function viewComment(id,flag) {
+
+      var allCom=[];
+      var comData = "";
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          allCom = JSON.parse(this.responseText);
+
+          if (allCom.length==0) {
+
+            document.getElementById("com"+id).innerHTML = "No Comments<br>";
+          }
+          else {
+            var val = document.getElementById("vc"+allCom[0].postId).value;
+          for (var i = 0; i < allCom.length; i++) {
+
+
+          comData+= "<b>"+allCom[i].Fullname+"</b>"+" : "+allCom[i].comment+"<br>";
+         if (flag == 1) {
+           document.getElementById("vc"+allCom[i].postId).value = "Hide Comments";
+           document.getElementById("com"+allCom[i].postId).innerHTML = "<h4>All Comments</h4>"+comData;
+
+         }
+         else {
+           if (val == 'Load Comments') {
+           document.getElementById("vc"+allCom[i].postId).value = "Hide Comments";
+           document.getElementById("com"+allCom[i].postId).innerHTML = "<u><h5>All Comments</h5></u>"+comData;
+
+            }
+            else {
+              document.getElementById("vc"+allCom[i].postId).value = "Load Comments";
+              document.getElementById("com"+allCom[i].postId).innerHTML = "";
+
+            }
+
+         }
+
+
+        }
+
+      }
+
+
+        }
+
+      }
+        id = id.substr(2);
+        id = parseInt(id);
+        var url ="/forums/loadComment/"+id;
+
+
+        xhttp.open("GET",url, true);
+        xhttp.send();
+
+
+    }
+
+
+
+    }
+    function comment(id){
+      if (document.getElementById('e'+id).value != "") {
+
+      var url;
+      com = document.getElementById('e'+id).value;
+      document.getElementById('e'+id).value = "";
+      var xhttp = new XMLHttpRequest();
+
+        url = "/forum/"+id+"/"+com;
+
+        xhttp.open("GET",url, true);
+        xhttp.send();
+        viewComment("vc"+id,1);
+
+}
+    }
+
+    document.getElementById("postData").innerHTML = postData;
+
+</script>
+
+</body>
+</html>

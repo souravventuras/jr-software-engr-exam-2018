@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Profile</title>
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+
+<style media="screen">
+body{
+  background-color: #dbd7ce;
+  font-family: Dapifer;
+
+}
+
+h1{
+  margin-left: 140px;
+  color: gray;
+
+  }
+ul {
+    list-style-type: none;
+    margin: 7px;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+}
+
+li a {
+
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 14px;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+li a:hover {
+    background-color: #111;
+}
+#a{
+  margin-left: 837px;
+    margin-top: -1px;
+}
+</style>
+
+</head>
+<body>
+
+  <div class="nav_bar">
+  <!-- Navigation -->
+  <nav class="w3-bar w3-black">
+    <ul>
+
+
+    <li><a href="/patHome">Home</a></li>
+    <li><a href="/findDoctor" >Find Doctor</a></li>
+    <li><a href="/pres/archive" >Archive</a></li>
+    <li><a href="/inboxPat" >Inbox</a></li>
+    <li id="a"><a href="/logout" >Logout</a></li>
+  </ul>
+  </nav>
+
+  </div>
+
+<div class="container">
+
+<table border="1" class="table" style="box-shadow: 10px 10px 5px #888888;">
+
+    <tr>
+      <th>Patient's Name</th>
+
+      <th>Phone No</th>
+      <th>Email</th>
+      <th>Password</th>
+      <th>Address</th>
+      <th>Edit Profile</th>
+
+
+    </tr>
+    <h2>Profile</h2>
+
+    <% for(var i = 0; i < patDetails.length; i++) { %>
+    <tr>
+      <td><%= patDetails[i].Fullname %></td>
+
+      <td><%= patDetails[i].Phone %></td>
+      <td><%= patDetails[i].Email %></td>
+      <td><%= patDetails[i].Password %></td>
+      <td><%= patDetails[i].Address %></td>
+      <td><a href="/profile/patedit/<%= patDetails[i].Userid %>">Edit</a></td>
+
+
+    </tr>
+    <% } %>
+  </table>
+</div>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>AppDetails</title>
+
+<style media="screen">
+body{
+	background-color: #dbd7ce;
+	font-family: Dapifer;
+
+}
+h2{
+	/*margin-left: 140px;*/
+	text-align: center;
+	color: gray;
+
+	}
+ul {
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+		overflow: hidden;
+		background-color: #333;
+}
+
+li {
+		float: left;
+}
+
+li a {
+		display: block;
+		color: white;
+		text-align: center;
+		padding: 14px 16px;
+		text-decoration: none;
+}
+
+li a:hover {
+		background-color: #111;
+}
+#a{
+	margin-left: 887px;
+}
+</style>
+</head>
+<body>
+
+	<div class="nav_bar">
+	<!-- Navigation -->
+	<nav class="w3-bar w3-black">
+	  <ul>
+	  <li><a href="/doctor">Home</a></li>
+
+	   <li><a href="/inboxDoc" >Inbox</a></li>
+	   <li><a href="/doctor/app" >  My Appointments  </a></li>
+
+	         <li id="a"><a href="/logout" >Logout</a></li>
+
+	</ul>
+	</nav>
+
+	</div>
+<h3>Schedule List</h3>	<br>
+<table border="1" class="table">
+		<tr>
+			<th>Name</th>
+			<th>Phone</th>
+			<th>Date</th>
+			<th>Time</th>
+
+		</tr>
+
+		<% for(var i = 0; i < appDetails.length; i++) { %>
+		<tr>
+			<td><%= appDetails[i].Fullname %></td>
+			<td><%= appDetails[i].Phone %></td>
+			<td><%= appDetails[i].date %></td>
+			<td><%= appDetails[i].ph %>:<%=appDetails[i].pm %></td>
+
+
+		</tr>
+		<% } %>
+
+
+
+	</table>
+
+</body>
+</html>

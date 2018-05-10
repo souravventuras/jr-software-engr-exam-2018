@@ -1,0 +1,526 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+
+      <style>
+      body{
+        background-color: #dbd7ce;
+        font-family: Dapifer;
+
+      }
+      h2{
+        /*margin-left: 140px;*/
+        text-align: center;
+        color: gray;
+
+        }
+      ul {
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+          overflow: hidden;
+          background-color: #333;
+      }
+
+      li {
+          float: left;
+          margin-left: 26px;
+      }
+
+      li a {
+          display: block;
+          color: white;
+          text-align: center;
+          padding: 14px 16px;
+          text-decoration: none;
+      }
+
+      li a:hover {
+          background-color: #111;
+      }
+      #a{
+        margin-left: 600px;
+      }
+      .writepres{
+        width: 100%;
+        height: 30px;
+        margin-top: 10px;
+
+      }
+      .mdcn{
+
+        width: 15%;
+        float: left;
+        margin-left: 2%;
+        margin-right: 2%;
+      }
+
+.mg{
+  width: 15%;
+  float: left;
+  margin-right: 2%;
+}
+.duration{
+  width: 15%;
+  float: left;
+  margin-right: 2%;
+}
+.times{
+  width: 15%;
+  float: left;
+  margin-right: 2%;
+}
+.when{
+  width: 15%;
+  float: left;
+  margin-right: 2%;
+
+}
+.a{
+  width: 18%;
+  float: left;
+margin-left: 10%;
+margin-right: 4%;
+}
+
+.b{
+  width: 18%;
+  float: left;
+margin-right: 4%;
+
+}
+.c{
+  width: 18%;
+  float: left;
+margin-right: 4%;
+
+}
+.d{
+  width: 18%;
+  float: left;
+margin-right: 4%;
+}
+.report{
+  font-style: italic;
+    position: absolute;
+    margin-top: 695px;
+    margin-left: 251px;
+
+}
+
+
+
+
+      </style>
+
+    </head>
+  <body>
+
+<div class="nav_bar">
+<!-- Navigation -->
+<nav class="w3-bar w3-black">
+  <ul>
+  <li><a href="/doctor">Home</a></li>
+  <li><a href="/doctor/editProfile/<%=fullinfo[0].Userid%>"><%=fullinfo[0].Fullname.split(' ').slice(0,2).join(' ')%> </a></li>
+
+   <li><a href="/inboxDoc" >Inbox</a></li>
+   <li><a href="/doctor/app" >  My Appointments  </a></li>
+
+         <li id="a"><a href="/logout" >Logout</a></li>
+   <% var value  = fullinfo[0].Fullname;
+   console.log(value);
+   %>
+</ul>
+</nav>
+
+</div>
+
+
+  <style>
+  div.dCan {
+    position: absolute;
+    left:500px;
+    top: 10px;
+
+  }
+div.dCan {
+  position: absolute;
+  left: 50px;
+  top: 180px;
+  background-color: #fffff3;
+  border: 3px solid #373835;
+}
+
+
+}
+#medName{
+  background-color: #ffffff;
+  border: 0px;
+  position: absolute;
+  left:100;
+  top: 10 ;
+}
+#mg{
+  background-color: #ffffff;
+  border: 0px;
+  position: absolute;
+  left: 100;
+  top:10 ;
+}
+#dur{
+  background-color: #ffffff;
+  border: 0px;
+  position: absolute;
+  left: 100;
+  top:10 ;
+}
+.dCan{
+position: absolute;
+margin-left: 345px;
+}
+</style>
+
+<div class="writepres">
+
+
+
+  <div class="mdcn">
+  Medicine Name :<br>
+  <input id="medName" type="text"  onkeyup="writeMed()" name="medName" placeholder="Write Here">
+  </div>
+
+<div class="mg">
+  MG :  <br>
+  <input id="mg" type="text" onkeyup="writeMg()" name="mg" placeholder="Write Here (MG)">
+
+</div>
+
+<div class="duration">
+  Duration : <br>
+   <input id="dur" type="text" onkeyup="writeDur()" name="dur" placeholder="Write Here (days)">
+
+</div>
+
+<div class="times">
+  Times : <br>
+  <select id=times onchange="writeTimes()">
+   <option value="0">  </option>
+   <option value="0+0+1">0+0+1</option>
+   <option value="0+1+1">0+1+1</option>
+   <option value="0+1+0">0+1+0</option>
+   <option value="1+1+1">1+1+1</option>
+ </select>
+</div>
+
+<div class="when">
+  When :<br>
+   <select id=when onchange="writeWhen()">
+    <option value="0">  </option>
+    <option value="Before">Before Meal</option>
+    <option value="After">After Meal</option>
+   </select>
+
+</div>
+
+
+ <form method="post" name="frm">
+ Patient Id :<input type="text" id="pId" name="patId" value="" placeholder="Write Patient Id">
+ <input type="hidden" id="imgUrl" name="imgUrl" value="">
+ <input type="hidden" id="dId" name="docId" value=<%=fullinfo[0].Userid%>>
+ <input type="hidden" id="date" name="date" value="">
+
+</div>
+
+
+</form>
+<div class="dCan">
+
+
+<canvas id="canvas" width="550" height="650" > </canvas>
+
+</div>
+<br><br>
+<div class="a">
+  <button onclick="addMed()">Write Another Medicine</button>
+</div>
+<div class="b">
+  <button onclick="clr()">Clear Prescription</button>
+
+</div>
+
+<div class="c">
+  <button onclick="save()">Save prescription</button>
+
+</div>
+
+<div class="d">
+  <button onclick="download()">Download prescription</button>
+
+</div>
+
+    <script >//wait is over :P
+
+  //  var f= new fabric.Text("hello",{fontsize : 40});
+
+
+
+
+
+  var caption = document.getElementById("canvas");
+  var ctxCap = caption.getContext("2d");
+  ctxCap.font = "16px Brush Script";
+  ctxCap.fillText("MEDICINE NAME",30,60);
+  ctxCap.fillText("MG",190,60);
+  ctxCap.fillText("DURATION",250,60);
+  ctxCap.fillText("TIMES",370,60);
+  ctxCap.fillText("WHEN??",440,60);
+  var date = Date();
+  date = date.substring(0,15);
+  ctxCap.fillText(date,400,20);
+  var temp = "<%-value%>";
+  ctxCap.fillText(temp,20,20);
+  x=30;
+  y=100;
+  var medCount=0;
+  var delCount=0;
+  var flag=0;
+  function del() {
+
+    delCount = delCount+1;
+
+    if(medCount>0 && delCount<=medCount+1)
+{    var context = canvas.getContext('2d');
+
+    context.clearRect(0,y,550,30);
+    y=y-25;
+}
+  else {
+    delCount=delCount-1;
+  }
+  }
+
+  function addMed() {
+    if (document.getElementById("medName").value=="") {
+      window.alert("Enter Valid Medicine Name");
+    }
+    else if (document.getElementById("mg").value=="") {
+      window.alert("Enter Valid Medicine Info");
+    }
+    else if (document.getElementById("dur").value=="") {
+      window.alert("Enter Valid Medicine Duration");
+
+    }
+    else if (document.getElementById("times").value=="0") {
+      window.alert("Enter Valid Medicine Hour");
+    }
+    else if (document.getElementById("when").value=="0") {
+      window.alert("Enter Valid Medicine Time");
+    }
+    else if (document.getElementById("pId").value=="") {
+      window.alert("Enter Valid Patient Id");
+    }
+    else
+{    medCount++;
+      document.getElementById("medName").value="";
+      document.getElementById("mg").value="";
+      document.getElementById("dur").value="";
+      document.getElementById("times").value="0";
+      document.getElementById("when").value="0";
+      y=y+25;
+      //console.log(medCount);
+}
+  }
+  function clr() {
+    var context = canvas.getContext('2d');
+    context.clearRect(20,80,550,600);
+    document.getElementById("medName").value="";
+    document.getElementById("mg").value="";
+    document.getElementById("dur").value="";
+    document.getElementById("times").value="0";
+    document.getElementById("when").value="0";
+    x=30;
+    y=100;
+
+  }
+
+    function writeMed() {
+
+
+    var message = document.getElementById("medName").value ;
+
+    var context = canvas.getContext('2d');
+
+    context.font = '16px Papyrus';
+    context.fillStyle = 'black';
+    context.clearRect(20,y-22,160,30);
+
+    context.fillText(message, x, y);
+    if (event.which == 13 || event.keyCode == 13) {
+      addMed();
+
+};
+}
+function writeMg() {
+
+
+var mg = document.getElementById("mg").value ;
+
+var context = canvas.getContext('2d');
+
+context.font = '16px Papyrus';
+context.fillStyle = 'black';
+context.clearRect(190,y-22,60,30);
+
+context.fillText(mg, 190, y);
+if (event.which == 13 || event.keyCode == 13) {
+  addMed();
+
+};
+}
+function writeDur() {
+
+
+var dur = document.getElementById("dur").value ;
+
+var context = canvas.getContext('2d');
+
+context.font = '16px Papyrus';
+context.fillStyle = 'black';
+context.clearRect(250,y-22,120,30);
+
+context.fillText(dur+'(Days)', 250, y);
+if (event.which == 13 || event.keyCode == 13) {
+  addMed();
+
+};
+}
+
+function writeTimes() {
+
+
+var context = canvas.getContext('2d');
+
+context.font = '16px Papyrus';
+context.fillStyle = 'black';
+context.clearRect(370,y-22,60,30);
+var sel= document.getElementById('times').value ;
+
+context.fillText(sel, 370, y);
+if (event.which == 13 || event.keyCode == 13) {
+  addMed();
+
+};
+}
+
+function writeWhen() {
+
+
+var context = canvas.getContext('2d');
+
+context.font = '16px Papyrus';
+context.fillStyle = 'black';
+context.clearRect(440,y-22,110,30);
+var sel= document.getElementById('when').value ;
+context.fillText(sel+" Meal", 440, y);
+if (event.which == 13 || event.keyCode == 13) {
+  addMed();
+
+};
+}
+
+
+function save() {
+
+  if (document.getElementById("medName").value=="") {
+    window.alert("Enter Valid Medicine Name");
+  }
+  else if (document.getElementById("mg").value=="") {
+    window.alert("Enter Valid Medicine Info");
+  }
+  else if (document.getElementById("dur").value=="") {
+    window.alert("Enter Valid Medicine Duration");
+
+  }
+  else if (document.getElementById("times").value=="0") {
+    window.alert("Enter Valid Medicine Hour");
+  }
+  else if (document.getElementById("when").value=="0") {
+    window.alert("Enter Valid Medicine Time");
+  }
+    else
+{
+                 var canvasElement = document.getElementById("canvas");
+                //
+                // var MIME_TYPE = "image/png";
+                //
+                // var imgURL = canvasElement.toDataURL(MIME_TYPE);
+                // var dlLink = document.createElement('a');
+                // dlLink.download = "IMG01";
+                // dlLink.href = imgURL;
+                // console.log(dlLink);
+                //
+                // dlLink.dataset.downloadurl = [MIME_TYPE, dlLink.download, dlLink.href].join(':');
+                //
+                // document.body.appendChild(dlLink);
+                // dlLink.click();
+                // document.body.removeChild(dlLink);
+
+        document.getElementById('imgUrl').value=canvasElement.toDataURL();
+        document.getElementById('date').value=date;
+        document.frm.submit();
+      //  Canvas2Image.saveAsPNG(canvasElement);
+
+      }
+
+}
+
+function download() {
+
+  if (document.getElementById("medName").value=="") {
+    window.alert("Enter Valid Medicine Name");
+  }
+  else if (document.getElementById("mg").value=="") {
+    window.alert("Enter Valid Medicine Info");
+  }
+  else if (document.getElementById("dur").value=="") {
+    window.alert("Enter Valid Medicine Duration");
+
+  }
+  else if (document.getElementById("times").value=="0") {
+    window.alert("Enter Valid Medicine Hour");
+  }
+  else if (document.getElementById("when").value=="0") {
+    window.alert("Enter Valid Medicine Time");
+  }
+    else
+{
+                var pId=document.getElementById('pId').value;
+                 var canvasElement = document.getElementById("canvas");
+
+                var MIME_TYPE = "image/png";
+
+                var imgURL = canvasElement.toDataURL(MIME_TYPE);
+                var dlLink = document.createElement('a');
+                dlLink.download = "IMG - "+pId + "-"+ date;
+                dlLink.href = imgURL;
+                console.log(dlLink);
+
+                dlLink.dataset.downloadurl = [MIME_TYPE, dlLink.download, dlLink.href].join(':');
+
+                document.body.appendChild(dlLink);
+                dlLink.click();
+                document.body.removeChild(dlLink);
+
+
+      //  Canvas2Image.saveAsPNG(canvasElement);
+
+      }
+
+}
+    </script>
+    <div class="report">
+      <a href="/report">View Weekly Report</a>
+    </div>
+
+  </body>
+</html>

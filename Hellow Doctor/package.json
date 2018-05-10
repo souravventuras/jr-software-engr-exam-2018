@@ -1,0 +1,27 @@
+{
+  "name": "nodetest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "node app"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@google/maps": "^0.4.3",
+    "body-parser": "^1.17.2",
+    "bootstrap": "^3.3.7",
+    "chart.js": "^2.7.0",
+    "ejs": "^2.5.7",
+    "express": "^4.15.4",
+    "express-session": "^1.15.5",
+    "express-validator": "^3.2.1",
+    "jquery": "^3.2.1",
+    "jquery-ui": "^1.12.1",
+    "jquery-ui-css": "^1.11.5",
+    "lodash": "^4.17.4",
+    "mysql": "^2.14.1",
+    "nodemon": "^1.11.0"
+  }
+}

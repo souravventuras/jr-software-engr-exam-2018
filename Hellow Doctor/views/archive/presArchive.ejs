@@ -1,0 +1,117 @@
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+
+
+    body{
+      background-color: #dbd7ce;
+      font-family: Dapifer;
+
+}
+    h2{
+      /*margin-left: 140px;*/
+      text-align: center;
+      color: gray;
+
+      }
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #333;
+    }
+
+    li {
+        float: left;
+    }
+
+    li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+
+    li a:hover {
+        background-color: #111;
+    }
+    #a{
+      margin-left: 823px;
+    }
+
+    .prescription{
+    position: absolute;
+    margin-left: 345px;
+    }
+    span{
+      font-size: 80px;
+      color: #0fe23a;
+    }
+
+    .archive_list{
+      width: 50%;
+      background-color: red;
+      margin-left: 25%;
+      margin-top: 20px;
+    }
+    #lst_ul{
+
+    background: #333;
+    padding: 20px;
+    }
+    #lst{
+      background: #f7ecd4;
+    margin: 5px;
+    float: none;
+    }
+    #lst a{
+      display: block;
+      color: #9c4444;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+    #lst_ul #lst a: hover{
+
+      background-color: #dbd7ce;
+
+    }
+    </style>
+  </head>
+  <body>
+    <div class="nav_bar">
+    <!-- Navigation -->
+    <nav class="w3-bar w3-black">
+      <ul>
+
+
+      <li><a href="/patHome">Home</a></li>
+      <li><a href="/findDoctor" >Find Doctor</a></li>
+      <li><a href="/pres/archive" >Archive</a></li>
+      <li><a href="/inboxPat" >Inbox</a></li>
+      <li id="a"><a href="/logout" >Logout</a></li>
+    </ul>
+    </nav>
+
+    </div>
+
+
+<div class="archive_list">
+<ul id="lst_ul">
+  <li id="lst"><% for(i=0;i<pInfo.length;i++){ %>
+
+  <a href='/pres/show/<%=i%>'><%=pInfo[i].date%><a>
+    <br><br>
+      <%}%></li>
+</ul>
+</div>
+
+  </body>
+</html>

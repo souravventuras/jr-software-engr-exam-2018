@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+    .date{
+      color: #626770;
+    }
+
+
+    body{
+      background-color: #dbd7ce;
+      font-family: Dapifer;
+
+    }
+    h1{
+      margin-left: 140px;
+      color: gray;
+
+      }
+    ul {
+        list-style-type: none;
+        margin: 7px;
+        padding: 0;
+        overflow: hidden;
+        background-color: #333;
+    }
+
+    li {
+        float: left;
+    }
+
+    li a {
+
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 14px;
+        text-decoration: none;
+        font-size: 16px;
+    }
+
+    li a:hover {
+        background-color: #111;
+    }
+    #a{
+      margin-left: 837px;
+        margin-top: -1px;
+    }
+    </style>
+  </head>
+
+
+  <body>
+    <div class="nav_bar">
+    <!-- Navigation -->
+    <nav class="w3-bar w3-black">
+      <ul>
+
+
+      <li><a href="/patHome">Home</a></li>
+      <li><a href="/findDoctor/alldoc" >Find Doctor</a></li>
+      <li><a href="/pres/archive" >Archive</a></li>
+      <li><a href="/inboxPat" >Inbox</a></li>
+      <li id="a"><a href="/logout" >Logout</a></li>
+    </ul>
+    </nav>
+
+    </div>
+    <br><br>
+    <p><%=info.sender%> : </p>
+      <form id="msg" method="post">
+        <textarea name="msg" rows="4" cols="70" style="resize:none"></textarea>
+        <input type="hidden" id="date" name="date" value="">
+        <input type="submit" name="submit" value="Send">
+      </form>
+
+        <script>
+        var t = Date();
+
+        var d = t.substring(0,21);
+          document.getElementById("date").value = d ;
+        </script>
+  </body>
+</html>

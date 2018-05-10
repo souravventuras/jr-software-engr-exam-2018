@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+    body{
+      background-color: #dbd7ce;
+      font-family: Dapifer;
+
+    }
+    h2{
+      /*margin-left: 140px;*/
+      text-align: center;
+      color: gray;
+
+      }
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #333;
+    }
+
+    li {
+        float: left;
+        margin-left: 26px;
+    }
+
+    li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+
+    li a:hover {
+        background-color: #111;
+    }
+    #a{
+      margin-left: 600px;
+    }
+    </style>
+  </head>
+  <body>
+
+    <div class="nav_bar">
+    <!-- Navigation -->
+    <nav class="w3-bar w3-black">
+      <ul>
+      <li><a href="/doctor">Home</a></li>
+      <li><a href="/doctor/editProfile/<%=id%>"><%=name.split(' ').slice(0,2).join(' ')%> </a></li>
+       <li><a href="/inboxDoc" >Inbox</a></li>
+       <li><a href="/doctor/app" >  My Appointments  </a></li>
+
+             <li id="a"><a href="/logout" >Logout</a></li>
+
+    </ul>
+    </nav>
+
+    </div>
+    <select id = "type" onchange="Chart()">
+      <option value="bar">Horizontal Bar</option>
+      <option value="line">Linear</option>
+      <option value="doughnut">Doughnut</option>
+      <option value="pie">Pie</option>
+    </select>
+
+    <canvas id="myChart"  height="600" style="border:1px solid #000000;"></canvas>
+<script src="Chart.js"></script>
+<script src="Chart.min.js"></script>
+<%var a=[]
+for(var i=0;i<info.length;i++){
+  if(info[i].day=="Saturday"){
+    a[0]=info[i].patCount;
+  }
+
+  else if(info[i].day=="Sunday"){
+    a[1]=info[i].patCount;
+  }
+  else if (info[i].day=="Monday") {
+     a[2]=info[i].patCount;
+  }
+  else if (info[i].day=="Tuesday") {
+     a[3]=info[i].patCount;
+  }
+  else if (info[i].day=="Wednesday") {
+       a[4]=info[i].patCount;
+  }
+  else if (info[i].day=="Thursday") {
+       a[5]=info[i].patCount;
+  }
+  else if (info[i].day=="Friday") {
+      a[6]=info[i].patCount;
+  }
+}%>
+<script>
+
+var ctx = document.getElementById("myChart").getContext('2d');
+    var t ="line";
+
+
+  var myChart = new Chart(ctx, {
+      type: t,
+      data: {
+          labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+          datasets: [{
+              label: 'Number of Patient on Each Day',
+              data: ["<%-a[1]%>","<%-a[2]%>","<%-a[3]%>", "<%-a[4]%>","<%-a[5]%>","<%-a[6]%>","<%-a[0]%>"],
+              maintainAspectRatio: true,
+              backgroundColor: [
+                  'rgba(255, 99, 132, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(255, 206, 86, 0.2)',
+                  'rgba(75, 192, 192, 0.2)',
+                  'rgba(153, 102, 255, 0.2)',
+                  'rgba(255, 159, 64, 0.2)'
+              ],
+              borderColor: [
+                  'rgba(255,99,132,1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 206, 86, 1)',
+                  'rgba(75, 192, 192, 1)',
+                  'rgba(153, 102, 255, 1)',
+                  'rgba(255, 159, 64, 1)'
+              ],
+              borderWidth: 4
+          }]
+      },
+      options: {
+        responsive: true,
+  maintainAspectRatio: false,
+          layout: {
+
+              padding: {
+                  left: 50,
+                  right: 50,
+                  top: 100,
+                  bottom: 100
+              }
+          }
+      }
+  });
+
+
+</script>
+  </body>
+</html>
