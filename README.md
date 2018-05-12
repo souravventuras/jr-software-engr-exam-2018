@@ -1,1 +1,0 @@
-# jr-software-engr-exam-2018
