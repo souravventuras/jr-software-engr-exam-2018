@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Add Developer</title>
+	<link rel="stylesheet" type="text/css" href="/public/style.css">
+</head>
+<body>
+<div class="main">
+  <%include partials/nav.ejs  %>	
+
+  <div class="content">
+    <form action="/adddeveloper" method="post">
+    	<h3>Add Developer</h3>
+   	  <div>
+   	    <label>Email</label><br>
+   	    <input type="text" name="email">
+   	  </div>
+
+   	  <div>
+   	    <label>Programming Language</label><br>
+   	    <input type="text" name="planguage">
+   	  </div>
+    
+      <div>
+   	   <label>Language</label><br>
+   	   <input type="text" name="language">
+   	  </div>
+
+   	  <button type="submit">Add</button>
+    </form>
+  </div> 
+	
+</div>
+</body>
+</html>
