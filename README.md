@@ -16,3 +16,5 @@ node index.js
 
 For unit test to run:
 npm test
+Then search in the browser:
+localhost:5000
