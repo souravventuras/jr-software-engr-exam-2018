@@ -1,0 +1,94 @@
+*{
+	margin: 0px;
+	padding: 0px;
+}
+.main{
+	width: 100%;
+	height: 800px; 
+	position: fixed;
+}
+
+.navbar{
+	width: 100%;
+	height: 60px;
+    float: right;
+    background:gray; 
+}
+
+.navbar li{
+	width:210px; 
+	list-style: none; 
+	float: left; 
+	margin-left: 80px;
+	text-align: center;
+	float: left;  
+	position: relative; 
+}
+
+.navbar li a{
+	display: block; 
+	color: white; 
+	line-height: 60px; 
+	text-align: center; 
+	font-family: cursive; 
+	font-size: 20px; 
+	text-decoration: none;
+}
+
+.navbar li a:hover{
+	background: lightgray;
+	color: #333;
+}
+
+.navbar ul{
+	position: absolute; 
+	display: none;
+	background: gray;
+
+}
+.navbar li ul li{
+	width: 250px;
+	height: 60px;
+	margin-left: 0px;
+	margin-top: 1px;
+	border-top: 1px solid lightgray;
+
+}
+.navbar li:hover > ul {
+	display: block;
+}
+
+.content{
+	width: 700px;
+	margin: auto;
+}
+
+.content form{
+	margin-top: 100px;
+	margin-left: 150px;
+}
+.content form h3{
+	margin-bottom: 5px;
+}
+.content form input{
+	width: 300px;
+	padding: 3px;
+	margin-bottom: 10px;
+}
+.content form input,label,button{
+	margin-top: 5px;
+	font-size: 15px;
+}
+
+.content table{
+	width: 700px;
+	border: 1px solid gray;
+}
+.content h3{
+	margin-top: 80px;
+	margin-bottom: 10px;
+}
+.content table tr th,td{
+	border: 1px solid gray;
+	text-align: center;
+}

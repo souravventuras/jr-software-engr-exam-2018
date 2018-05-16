@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>PHP and English Developer</title>
+	<link rel="stylesheet" type="text/css" href="/public/style.css">
+</head>
+<body>
+<div class="main">
+   <%include partials/nav.ejs  %>
+   <div class="content">
+
+   	<h3>PHP and speak English Developer Information</h3>
+   	<table>
+   		<tr>
+   			<th>No</th>
+   			<th>Email</th>
+   			<th>Programming Language</th>
+   			<th>Language</th>
+   		</tr>
+
+   	    <% if(data.length){
+   			for(var i=0; i<data.length; i++){
+   		%>
+
+   		<tr>
+   		   <td><%=(i+1)%></td>
+   		   <td><%=data[i].email%></td>
+   		   <td><%=data[i].planguage%></td>
+   		   <td><%=data[i].language%></td>
+   		</tr>
+
+   		<% }
+
+            }else{ 
+        %>
+
+        <tr>
+           <td colspan="4">No Developer</td>
+        </tr>
+
+        <% } %>
+
+   	</table>
+   </div>
+</div>
+</body>
+</html>
