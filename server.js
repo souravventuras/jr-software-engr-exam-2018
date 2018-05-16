@@ -63,6 +63,20 @@ app.get('/seed',function (req,res) {
 	})
 
 });
+app.get('/getData',function (req,res) {
+	developers
+	.find({})
+	.populate('languages')
+	.populate('programming_lang')
+	.exec(function(err,devs) {
+		if(err)
+			console.log(err)
+		else{
+			res.status(200).json({dev: devs})
+		}
+	})
+
+});
 
 function init() {
 	// async.waterfall([

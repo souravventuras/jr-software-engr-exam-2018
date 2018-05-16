@@ -48,8 +48,31 @@
 			<div class="col-lg-4">
 				<button class="btn btn-primary">Search</button>
 			</div>
-
 		</div>
+		<table class="table" style="margin-top: 100px;">
+    <thead>
+      <tr>
+        <th>Email</th>
+        <th>Languages</th>
+        <th>Programming languages</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="data in tableData track by $index">
+        <td>{{data.email}}</td>
+        <td>
+					<span ng-repeat="lan in data.languages">
+						{{lan.code}}
+					</span>
+				</td>
+        <td><span ng-repeat="prlan in data.programming_lang">
+						{{prlan.name}}
+					</span>
+				</td>
+      </tr>
+    </tbody>
+  </table>
+
 		</div>
 	</div>
 </body>
@@ -63,7 +86,16 @@
 		var app = angular.module('myApp',[]);
 		app.controller('myCtrl',['$scope','$http', function($scope, $http) {
 		    var data={};
-
+				$scope.tableData = []
+				$http({
+		       method : "GET",
+		       url : "/getData"
+		    }).then(function (response) {
+						console.log(response)
+		        $scope.tableData = response.data.dev;
+		    }, function(response) {
+		        console.log(response)
+		    });
 		}]);
 	</script>
 

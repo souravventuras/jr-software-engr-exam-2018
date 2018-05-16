@@ -6,7 +6,7 @@ var DeveloperSchema = mongoose.Schema({
   email : {type : String , unique : true, required : true, dropDups: true},
   languages : [{
       type: Schema.ObjectId,
-      ref: 'Languages'
+      ref: 'Language'
   }],
   programming_lang: [{
       type: Schema.ObjectId,
