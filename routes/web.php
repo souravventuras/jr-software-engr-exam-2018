@@ -11,6 +11,9 @@
 |
 */
 
+Route::resource('developers', 'DevelopersController');
+Route::resource('language', 'LanguageController');
+
 Route::get('/', function () {
     return view('welcome');
 });

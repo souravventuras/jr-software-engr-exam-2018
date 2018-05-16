@@ -11,6 +11,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        $this->call([
+            LanguagesTableSeeder::class,
+            ProgrammingLanguagesTableSeeder::class,
+            DevelopersTableSeeder::class
+        ]);
     }
 }
