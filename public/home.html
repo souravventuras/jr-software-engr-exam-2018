@@ -39,14 +39,16 @@
 		<h2 class="text-primary">Welcome to Assignment</h2>
 		<h4 class="text-primary">Please search to see related data</h4>
 		<div class="form-group">
-			<div class="col-lg-4">
-				<input type="text" class="form-control" ng-model="language"/>
-			</div>
+
 			<div class="col-lg-4">
 				<input type="text" class="form-control" ng-model="prolanguage"/>
 			</div>
 			<div class="col-lg-4">
-				<button class="btn btn-primary">Search</button>
+				<input type="text" class="form-control" ng-model="language" ng-show="prolanguage.length"
+				placeholder="Enter language name (optional)"/>
+			</div>
+			<div class="col-lg-4">
+				<button class="btn btn-primary" ng-click="search()">Search</button>
 			</div>
 		</div>
 		<table class="table" style="margin-top: 100px;">
@@ -96,6 +98,19 @@
 		    }, function(response) {
 		        console.log(response)
 		    });
+
+				$scope.search = function(){
+					$http({
+			       method : "Post",
+			       url : "/searchData",
+						 data: {language: $scope.language, programming: $scope.prolanguage}
+			    }).then(function (response) {
+							console.log(response)
+			        $scope.tableData = response.data.result;
+			    }, function(response) {
+			        console.log(response)
+			    });
+				}
 		}]);
 	</script>
 

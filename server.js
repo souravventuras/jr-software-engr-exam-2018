@@ -78,6 +78,48 @@ app.get('/getData',function (req,res) {
 
 });
 
+app.post('/searchData',function(req,res){
+	console.log(req.body)
+	var language = req.body.language
+	if(language)
+		language = language.trim()
+	var programming_lang = req.body.programming
+	developers
+	.find({})
+	.populate('languages')
+	.populate('programming_lang')
+	.exec(function(err,devs) {
+		if(err)
+			console.log(err)
+		else{
+			var searchData = []
+			for(var i = 0 ; i < devs.length; i++){
+				for(var j=0;j<devs[i].programming_lang.length;j++){
+					//console.log(devs[i].programming_lang[j].name)
+					if(devs[i].programming_lang[j].name.toLowerCase()==programming_lang.toLowerCase()){
+						searchData.push(devs[i])
+						break;
+					}
+				}
+			}
+			var finalSet = []
+			if(searchData.length && language){
+				for(var i = 0 ; i< searchData.length; i++){
+					for(var j=0;j<searchData[i].languages.length;j++){
+						if(searchData[i].languages[j].code.toLowerCase()==language.toLowerCase()){
+							finalSet.push(searchData[i])
+							break;
+						}
+					}
+					if(i==(searchData.length-1))
+						res.status(200).json({result: finalSet})
+				}
+			} else
+			res.status(200).json({result: searchData})
+		}
+	})
+})
+
 function init() {
 	// async.waterfall([
 	// 	function(next){
@@ -358,6 +400,7 @@ function shuffle(array) {
 
     return array;
 }
+
 
 
 
