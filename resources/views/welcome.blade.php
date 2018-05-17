@@ -14,9 +14,9 @@
 
     </head>
     <body>
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-3">
+        <nav class="navbar navbar-expand-md navbar-dark bg-primary mb-3">
             <div class="container">
-                <a class="navbar-brand" href="#">Test Project</a>
+                <a class="navbar-brand" href="/">Baileybook</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
                     aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon icon-sm"></span>
