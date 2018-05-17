@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Language;
+use App\ProgrammingLanguage;
 
-class LanguagesController extends Controller
+class ProgrammingLanguagesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class LanguagesController extends Controller
      */
     public function index()
     {
-        $languages = Language::all();
-        return $languages;
+        $programminglanguages = ProgrammingLanguage::all();
+        return $programminglanguages;
     }
 
     /**
@@ -47,8 +47,8 @@ class LanguagesController extends Controller
      */
     public function show($id)
     {
-        $languages = Language::find($id);
-        return $languages->developers;
+        $programminglanguages = ProgrammingLanguage::find($id);
+        return $programminglanguages->developers;
     }
 
     /**

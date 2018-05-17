@@ -24,11 +24,22 @@ class DevelopersTableSeeder extends Seeder
             ]);
 
             $developers->save();
+            
+            $language_ids = [];
+            $programming_languagee_ids = [];
 
-            $language = Language::inRandomOrder()->first()->id;
-            $programming_language = ProgrammingLanguage::inRandomOrder()->first()->id;
-            $developers->languages()->sync([$language]);
-            $developers->programming_languages()->sync([$programming_language]);
+            foreach(range(1,3) as $id) {
+                $language_id = Language::inRandomOrder()->first()->id;
+                $language_ids[] = $language_id;
+            }
+
+            foreach(range(1,5) as $p_id) {
+                $programming_language_id = ProgrammingLanguage::inRandomOrder()->first()->id;
+                $programming_languagee_ids[] = $programming_language_id;
+            }
+
+            $developers->languages()->sync($language_ids);
+            $developers->programming_languages()->sync($programming_languagee_ids);
         };
     }
 }
