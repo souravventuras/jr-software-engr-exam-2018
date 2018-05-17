@@ -45,14 +45,17 @@ I have maintanied relationships when seeding.
          List of language by developer id:      http://localhost:8000/developers/language/1
  List of programming language by developer id:  http://localhost:8000/developers/programming_language/1
 ``
+
 ``
                     List of language:           http://localhost:8000/languages
     List of developers by language id:          http://localhost:8000/languages/1
 ``
+
 ``
         List of programming language:           http://localhost:8000/programming_languages
  List of developers by programming language id: http://localhost:8000/programming_languages/1
 ``
+
 
 
 
