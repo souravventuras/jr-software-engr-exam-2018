@@ -1,5 +1,8 @@
 const filtersReducerDefaultState = {
   text: '',
+  programmingSearchText: '',
+  languageSearchText: '',
+  text: '',
   sortBy: 'date',
   startDate: undefined,
   endDate: undefined
@@ -11,6 +14,16 @@ export const filtersReducer = (state = filtersReducerDefaultState, action) => {
       return {
         ...state,
         text: action.text
+      };
+    case 'SET_PROGRAMMING_TEXT_FILTER':
+      return {
+        ...state,
+        programmingSearchText: action.text
+      };
+    case 'SET_LANGUAGE_TEXT_FILTER':
+      return {
+        ...state,
+        languageSearchText: action.text
       };
     case 'SORT_BY_DATE':
       return {

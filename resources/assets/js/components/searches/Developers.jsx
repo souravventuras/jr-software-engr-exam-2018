@@ -3,23 +3,15 @@ import {connect} from 'react-redux';
 import selectDevelopers from '../../selectors/selectDevelopers';
 import selectLanguages from '../../selectors/selectLanguages';
 import selectProgrammingLanguages from '../../selectors/selectProgrammingLanguages';
-import {setTextFilter, sortByDate, setStartDate, setEndDate} from '../../actions/filters';
+import {setTextFilter, setProgrammingTextFilter, setLanguageTextFilter} from '../../actions/filters';
 import {startGetProgrammingLanguagesByDeveloperId} from '../../actions/programmingLanguages';
 
 export class Developers extends Component {
   constructor(props) {
     super(props);
     this.state = {}
-
-    // this.onTextChange = this.onTextChange.bind(this); this.onSortChange =
-    // this.onSortChange.bind(this);
+    
   }
-
-  //   onTextChange = (e) => {     this.props.setTextFilter(e.target.value);   };
-  // onSortChange = (e) => {     if (e.target.value === 'date') {
-  // this.props.sortByDate(e.target.value);     } else if (e.target.value ===
-  // 'amount') {       this.props.sortByAmount(e.target.value);     }   };
-
   render() {
     return (
       <div>
@@ -39,8 +31,8 @@ export class Developers extends Component {
               </div>
               <select
                 className="custom-select"
-                defaultValue={this.props.filters.sortBy}
-                onChange={this.onSortChange}>
+                defaultValue={this.props.filters.programmingSearchText}
+                onChange={(e) => {this.props.setProgrammingTextFilter(e.target.value)}}>
                 <option value=""></option>
                 {
                     this.props.programming_languages.map((programming_language) => {
@@ -57,8 +49,8 @@ export class Developers extends Component {
               </div>
               <select
                 className="custom-select"
-                defaultValue={this.props.filters.sortBy}
-                onChange={this.onSortChange}>
+                defaultValue={this.props.filters.languageSearchText}
+                onChange={(e) => {this.props.setLanguageTextFilter(e.target.value)}}>
                 <option value=""></option>
                 {
                     this.props.languages.map((language) => {
@@ -69,7 +61,7 @@ export class Developers extends Component {
             </div>
           </div>
         </div>
-        <table className="table table-sm mt-4">
+        <table className="table table-sm mt-4 bg-light">
           <thead>
             <tr>
               <th scope="col">#</th>
@@ -87,9 +79,23 @@ export class Developers extends Component {
                   <th scope="row">{i + 1}</th>
                   <td>{developer.email}</td>
                   <td>
-                    kk
+                    {
+                      developer.programming_languages.map((programming_language, j) => {
+                        if(!j)
+                        return programming_language.name;
+                        return ', '+programming_language.name;
+                      })
+                    }
                   </td>
-                  <td>@mdo</td>
+                  <td>
+                  {
+                    developer.languages.map((language, k) => {
+                      if(!k)
+                      return language.code;
+                      return ', '+language.code;
+                    })
+                  }
+                  </td>
                 </tr>
               })}
 
@@ -108,9 +114,8 @@ const mapStateToProps = (state) => ({
 });
 const mapDispatchToProps = (dispatch) => ({
   setTextFilter: (text) => dispatch(setTextFilter(text)),
-  sortByDate: () => dispatch(sortByDate()),
-  setStartDate: (date) => dispatch(setStartDate(date)),
-  setEndDate: (date) => dispatch(setEndDate(date))
+  setProgrammingTextFilter: (text) => dispatch(setProgrammingTextFilter(text)),
+  setLanguageTextFilter: (text) => dispatch(setLanguageTextFilter(text))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Developers);

@@ -3,6 +3,16 @@ export const setTextFilter = (text = '') => ({
     text
 });
 
+export const setProgrammingTextFilter = (text = '') => ({
+    type: 'SET_PROGRAMMING_TEXT_FILTER',
+    text
+});
+
+export const setLanguageTextFilter = (text = '') => ({
+    type: 'SET_LANGUAGE_TEXT_FILTER',
+    text
+});
+
 export const sortByDate = () => ({
     type: 'SORT_BY_DATE'
 });

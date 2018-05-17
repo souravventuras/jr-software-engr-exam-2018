@@ -15,8 +15,14 @@ class DevelopersController extends Controller
      */
     public function index()
     {
+        $allDevelopers = [];
         $developers = Developer::all();
-        return response($developers);
+        foreach($developers as $developer) {
+            $developer->programming_languages;
+            $developer->languages;
+            $allDevelopers[] = $developer;
+        }
+        return response($allDevelopers);
     }
 
     public function language($id)
