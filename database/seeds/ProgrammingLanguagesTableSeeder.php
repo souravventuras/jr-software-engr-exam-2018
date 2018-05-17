@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Faker\Factory as Faker;
 
 class ProgrammingLanguagesTableSeeder extends Seeder
 {
@@ -11,6 +12,15 @@ class ProgrammingLanguagesTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\ProgrammingLanguage::class, 10)->create();
+        $programming_languages = ['php', 'ruby', 'javascript', 'python', 'scala', 'kotlin', 'swift', 'java'];
+
+        $faker = Faker::create();
+        foreach (range(0,7) as $index) {
+            DB::table('programming_languages')->insert([
+                'name' => $programming_languages[$index],
+                'created_at' => now(),
+                'updated_at' => now()
+            ]);
+        };
     }
 }

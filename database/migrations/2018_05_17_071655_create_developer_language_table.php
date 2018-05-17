@@ -19,7 +19,6 @@ class CreateDeveloperLanguageTable extends Migration
             $table->foreign('developer_id')->references('id')->on('developers');
             $table->unsignedInteger('language_id');
             $table->foreign('language_id')->references('id')->on('languages');
-            $table->timestamps();
         });
     }
 

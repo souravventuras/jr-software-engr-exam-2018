@@ -12,7 +12,7 @@
 */
 
 Route::resource('developers', 'DevelopersController');
-Route::resource('language', 'LanguageController');
+Route::resource('languages', 'LanguagesController');
 
 Route::get('/', function () {
     return view('welcome');
