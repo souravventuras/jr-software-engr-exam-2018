@@ -1,5 +1,4 @@
-# jr-software-engr-exam-2018
-
+# Laravel-React Test Project with Redux
 > Ikram - Ud - Daula
 
 > Software Developer
@@ -10,73 +9,53 @@
 - Open command prompt and navigate the project root in your command prompt
 - Make sure composer install on your pc by using command on your prompt
 ```
-    composer -v
+composer -v
 ```
 - Run the command on your prompt
 ```
-    composer install
+composer install
+npm install
 ```
 - Create a Database on your local server and configure database & credential in **.env** file.
 ```
-    DB_DATABASE=(your database name)
-    DB_USERNAME=(server username)
-    DB_PASSWORD=(server password. if you have)
+DB_DATABASE=(your database name)
+DB_USERNAME=(server username)
+DB_PASSWORD=(server password. if you have)
 ```
 - Run the command on your prompt
 ```
-    php artisan migrate
-    php artisan db:seed
-    php artisan serve
+php artisan migrate
+php artisan db:seed
+php artisan serve
 ```
-- `php artisan db:seed` may be take some times. because, it's generates so many data.
-
 Then hit `http://localhost:8000` on your browser.
 
 ## Documentation
-This Branch is all about *Task B* **DB seed**.
+- not completed
 
-I have maintanied relationships when seeding.
-
-- `“developer” has many “programming_languages” and ”languages”`.
-- `“programming_language” and “languages” also has_many “developers”`.
-
-## Route
-           
-                    List of developers:        http://localhost:8000/developers
-
-
-         List of language by developer id:      http://localhost:8000/developers/language/1
-         
-
- List of programming language by developer id:  http://localhost:8000/developers/programming_language/1
- 
-
-
-                    List of language:           http://localhost:8000/languages
-
-                    
-    List of developers by language id:          http://localhost:8000/languages/1
-    
-
-        List of programming language:           http://localhost:8000/programming_languages
-        
-
- List of developers by programming language id: http://localhost:8000/programming_languages/1
-
-
+- developer search complete but other data render not completed.
 
 
 ## Description
-Task B, I have covered possible all of the requirement that you have provided.
+
 
 **I have used**
 
 - *laravel 5.6* latest version.
 - Implemented some migration flow with relationships.
-
+- DB seeding for some dummy post category.
+- Provides an API endpoint.
+- *Bootstrap 4* with customization
+- *Redux* part took some time from me. I am not using Redux repository from Git which is they recommended. But I implemented a complete store for this test project with filtering, sorting, and sort between date which are not visualize but functionaly implementated. You may check the resources.
+```
+resources\assets\js 
+                   \actions
+                   \reducers
+                   \selectors
+                   \store
+```
+- This implementation of *Redux* is self-created using `redux` and `react-redux` node module.
 > Some Others *React.js* & *Redux* related crafting, please visit [React.js & Redux demo](https://ikram-ud-daula.herokuapp.com/)
-
-
 
 
 
