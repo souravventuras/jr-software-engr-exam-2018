@@ -15,7 +15,7 @@ class LanguagesController extends Controller
     public function index()
     {
         $languages = Language::all();
-        return $languages;
+        return response($languages);
     }
 
     /**

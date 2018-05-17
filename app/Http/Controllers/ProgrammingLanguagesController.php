@@ -15,7 +15,7 @@ class ProgrammingLanguagesController extends Controller
     public function index()
     {
         $programminglanguages = ProgrammingLanguage::all();
-        return $programminglanguages;
+        return response($programminglanguages);
     }
 
     /**
