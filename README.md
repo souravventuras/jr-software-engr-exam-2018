@@ -41,7 +41,7 @@ I have maintanied relationships when seeding.
 - `“programming_language” and “languages” also has_many “developers”`.
 
 ## Route
-``                   
+           
                     List of developers:        http://localhost:8000/developers
 
 
@@ -62,8 +62,6 @@ I have maintanied relationships when seeding.
         
 
  List of developers by programming language id: http://localhost:8000/programming_languages/1
-
-``
 
 
 
