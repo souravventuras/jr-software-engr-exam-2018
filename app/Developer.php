@@ -10,10 +10,10 @@ class Developer extends Model
     protected $table = 'developers';
 
     public function programming_languages() {
-        return $this->hasMany('App\ProgrammingLanguage');
+        return $this->belongsToMany('App\ProgrammingLanguage');
     }
 
     public function languages() {
-        return $this->hasMany('App\Language');
+        return $this->belongsToMany('App\Language');
     }
 }

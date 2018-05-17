@@ -16,7 +16,7 @@ class LanguageController extends Controller
     {
         $language = Language::find(1);
 
-        return $language;
+        return $language->developers;
     }
 
     /**

@@ -15,7 +15,7 @@ class DevelopersController extends Controller
     public function index()
     {
         $developers = Developer::find(1);
-        return $developers;
+        return $developers->languages;
     }
 
     /**
