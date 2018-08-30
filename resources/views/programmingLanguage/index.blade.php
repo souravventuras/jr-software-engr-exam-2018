@@ -5,7 +5,9 @@
     @include('common.success')
     <a class="btn btn-primary btn-block" href="{{route('programminglanguage.create')}}" role="button">Add</a>
     <br>
-    <table class="table">
+    <div class="card">
+        <div class="card-body">
+    <table class="table table-bordered">
         <thead>
         <tr>
             <th scope="col">#</th>
@@ -23,4 +25,6 @@
         @endforeach
         </tbody>
     </table>
+        </div>
+    </div>
 @endsection

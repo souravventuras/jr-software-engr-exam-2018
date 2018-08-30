@@ -3,6 +3,8 @@
 @section('content')
     <br>
     @include('common.errors')
+    <div class="card">
+        <div class="card-body">
     <form method="post" action="{{route('developer.store')}}">
         @csrf
         <div class="form-group row">
@@ -44,4 +46,6 @@
             </div>
         </div>
     </form>
+        </div>
+    </div>
 @endsection
