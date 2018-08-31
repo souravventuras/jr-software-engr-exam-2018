@@ -24,6 +24,7 @@ class DeveloperRepository extends Repository
         return $this->model->with(['programmingLanguage', 'language'])->get();
     }
 
+
     public function searchDeveloper($request)
     {
         $programming_language = $request->input('programming_language');
