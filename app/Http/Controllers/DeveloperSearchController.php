@@ -22,7 +22,6 @@ class DeveloperSearchController extends Controller
 
     public function search(Request $request)
     {
-
         $language = $this->language->getAll();
         $programming_language = $this->programming_language->getAll();
 
