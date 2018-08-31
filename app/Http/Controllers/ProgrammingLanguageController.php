@@ -14,17 +14,20 @@ class ProgrammingLanguageController extends Controller
         $this->programming_language = $programming_language;
     }
 
-    public function index(){
+    public function index()
+    {
         $programming_languages = $this->programming_language->getAll();
 
         return view('programmingLanguage.index', ['programming_languages' => $programming_languages]);
     }
 
-    public function create(){
+    public function create()
+    {
         return view('programmingLanguage.create');
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $this->validate($request, [
             'name' => 'required'
         ]);

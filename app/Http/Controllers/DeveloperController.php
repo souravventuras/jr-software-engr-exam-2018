@@ -15,25 +15,28 @@ class DeveloperController extends Controller
 
     public function __construct(DeveloperRepository $developer, LanguageRepository $language, ProgrammingLanguageRepository $programming_language)
     {
-        $this->developer            = $developer;
-        $this->language             = $language;
+        $this->developer = $developer;
+        $this->language = $language;
         $this->programming_language = $programming_language;
     }
 
-    public function index(){
+    public function index()
+    {
         $developers = $this->developer->getAll();
 
         return view('developer.index', ['developers' => $developers]);
     }
 
-    public function create(){
-        $languages             = $this->language->getAll();
+    public function create()
+    {
+        $languages = $this->language->getAll();
         $programming_languages = $this->programming_language->getAll();
 
         return view('developer.create', ['languages' => $languages, 'programming_languages' => $programming_languages]);
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $this->validate($request, [
             'email' => 'required|email'
         ]);

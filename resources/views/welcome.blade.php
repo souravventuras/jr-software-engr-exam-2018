@@ -8,7 +8,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <select name="programming_language" id="programming_language" class="form-control">
-                            <option value="">Search by programming language </option>
+                            <option value="">Search by programming language</option>
                             @foreach($programming_languages as $programming_language)
                                 <option {{request('programming_language') === $programming_language->name ? 'selected' : '' }} value="{{$programming_language->name}}">{{$programming_language->name}}</option>
                             @endforeach
@@ -32,28 +32,28 @@
     <div class="card">
         <div class="card-body">
             @if(count($developers) > 0)
-            <table class="table table-bordered">
-                <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Programming Language</th>
-                    <th scope="col">Language</th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($developers as $data)
+                <table class="table table-bordered">
+                    <thead>
                     <tr>
-                        <th scope="row">{{$data->id}}</th>
-                        <td>{{$data->email}}</td>
-                        <td>{{$data->programmingLanguage->pluck('name')->implode(',')}}</td>
-                        <td>{{$data->language->pluck('code')->implode(',')}}</td>
+                        <th scope="col">#</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Programming Language</th>
+                        <th scope="col">Language</th>
                     </tr>
-                @endforeach
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                    @foreach($developers as $data)
+                        <tr>
+                            <th scope="row">{{$data->id}}</th>
+                            <td>{{$data->email}}</td>
+                            <td>{{$data->programmingLanguage->pluck('name')->implode(',')}}</td>
+                            <td>{{$data->language->pluck('code')->implode(',')}}</td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
             @else
-               <h3 class="text-center">No Search Result Found !</h3>
+                <h3 class="text-center">No Search Result Found !</h3>
             @endif
         </div>
     </div>

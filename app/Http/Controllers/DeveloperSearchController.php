@@ -28,6 +28,6 @@ class DeveloperSearchController extends Controller
 
         $developers = $this->developer->searchDeveloper($request);
 
-        return view('welcome', ['developers' => $developers,'languages' => $language, 'programming_languages' => $programming_language]);
+        return view('welcome', ['developers' => $developers, 'languages' => $language, 'programming_languages' => $programming_language]);
     }
 }

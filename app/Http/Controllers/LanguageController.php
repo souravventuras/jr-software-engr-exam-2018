@@ -14,23 +14,26 @@ class LanguageController extends Controller
         $this->language = $language;
     }
 
-    public function index(){
+    public function index()
+    {
         $languages = $this->language->getAll();
 
         return view('language.index', ['languages' => $languages]);
     }
 
-    public function create(){
+    public function create()
+    {
         return view('language.create');
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $this->validate($request, [
             'code' => 'required'
         ]);
 
         $this->language->create([
-           'code' => $request->input('code')
+            'code' => $request->input('code')
         ]);
 
         return redirect('/language')->with('success', 'Language added');
