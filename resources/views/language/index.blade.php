@@ -21,7 +21,7 @@
                     <tr>
                         <th scope="row">{{$data->id}}</th>
                         <td>{{$data->code}}</td>
-                        <td>{{$data->developer->pluck('email')->implode(',')}}</td>
+                        <td>{!! $data->developer->pluck('email')->implode('<br>') !!}</td>
 
                     </tr>
                 @endforeach
