@@ -19,14 +19,14 @@
             <a href="{{route('home')}}">Developer Search</a>
         </li>
 
-        <li class="list-group-item list-group-item-primary">
-            <a href="{{route('developer.index')}}">Developer</a>
-        </li>
         <li class="list-group-item list-group-item-danger">
             <a href="{{route('programminglanguage.index')}}">Programming Language</a>
         </li>
         <li class="list-group-item list-group-item-warning">
             <a href="{{route('language.index')}}">Language</a>
+        </li>
+        <li class="list-group-item list-group-item-primary">
+            <a href="{{route('developer.index')}}">Developer</a>
         </li>
     </ul>
         </div>
@@ -37,5 +37,6 @@
 </div>
 
 </body>
-<script src="{{ asset('js/app.js') }}" defer></script>
+<script src="{{ asset('js/app.js') }}"></script>
+@stack('scripts')
 </html>

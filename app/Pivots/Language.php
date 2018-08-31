@@ -14,4 +14,8 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 class Language extends Pivot
 {
 
+    public function language(){
+        return $this->hasManyThrough('App\Models\Language', 'App\Models\Developer');
+    }
+
 }

@@ -9,6 +9,8 @@ class ProgrammingLanguage extends Model
     protected $fillable = ['name'];
 
     public function developer(){
-        return $this->belongsToMany('App\Models\Developer');
+        return $this->belongsToMany('App\Models\Developer')->using('App\Pivots\Language');
     }
+
+
 }

@@ -12,7 +12,5 @@ class Language extends Model
         return $this->belongsToMany('App\Models\Developer');
     }
 
-    public function programmingLanguage(){
-        return $this->hasManyThrough('App\Models\ProgrammingLanguage', 'App\Models\Language');
-    }
+
 }

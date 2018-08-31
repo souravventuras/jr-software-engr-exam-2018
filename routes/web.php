@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+Route::get('/', 'DeveloperSearchController@search')->name('home');
 
 Route::get('/developer', 'DeveloperController@index')->name('developer.index');
 Route::get('/developer/create', 'DeveloperController@create')->name('developer.create');

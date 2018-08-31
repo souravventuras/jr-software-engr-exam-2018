@@ -3,7 +3,7 @@
 @section('content')
     <br>
     @include('common.success')
-    <a class="btn btn-primary btn-block" href="{{route('language.create')}}" role="button">Add</a>
+    <a class="btn btn-primary btn-block" href="{{route('language.create')}}" role="button">Add New Language</a>
     <br>
     <div class="card">
         <div class="card-body">

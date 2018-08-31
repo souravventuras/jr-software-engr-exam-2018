@@ -18,4 +18,9 @@ class LanguageRepository extends Repository
     {
         return 'App\Models\Language';
     }
+
+    public function getAll($columns = array('*'))
+    {
+        return $this->model->with('developer')->get();
+    }
 }
