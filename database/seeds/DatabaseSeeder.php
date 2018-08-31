@@ -13,6 +13,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(Programming_languageTableSeeder ::class);
         $this->call(LanguageTableSeeder ::class);
-        /*$this->call(DeveloperTableSeeder ::class);*/
+        $this->call(DeveloperTableSeeder ::class);
     }
 }

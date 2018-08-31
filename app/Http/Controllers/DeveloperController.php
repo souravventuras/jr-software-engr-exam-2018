@@ -38,7 +38,7 @@ class DeveloperController extends Controller
         $developer->save();
         $developer->language()->attach($request->input('language'));
         $developer->programming_language()->attach($request->input('programminglanguage'));
-        return redirect('/index');
+        return redirect('/');
     }
 
     //showing both search page

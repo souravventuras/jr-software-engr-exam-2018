@@ -13,9 +13,9 @@
 
 
 
-Route::get('/index',['as' => 'developer.index', 'uses' => 'DeveloperController@index']);
+Route::get('/',['as' => 'developer.index', 'uses' => 'DeveloperController@index']);
 
-Route::get('/',['as' => 'developer.create', 'uses' => 'DeveloperController@create']);
+Route::get('/create',['as' => 'developer.create', 'uses' => 'DeveloperController@create']);
 
 Route::post('/developer/create','DeveloperController@store');
 
