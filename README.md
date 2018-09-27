@@ -1,13 +1,13 @@
 
 ## Deployment Process
 
-After cloning the repository, if Composer is installed globally, run
+After cloning the repository, if Composer is installed globally, then goto to project folder and run the below command
 
 ```bash
 composer update
 ```
 
-Create database and named it my_app_db
+Now create database in mysql and named it 'my_app_db'
 
 For generating table using migrations go to project folder into /bin and open terminal/command promt and run following command
 
