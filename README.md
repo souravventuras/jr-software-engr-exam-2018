@@ -26,3 +26,11 @@ bin/cake server -p 8765
 ```
 
 Then visit `http://localhost:8765
+
+http://prntscr.com/kzgho9 --in general
+
+http://prntscr.com/kzghzx --search with php result
+
+http://prntscr.com/kzgiwb  -- search with english and php both
+
+http://prntscr.com/kzgxd4 -api/json output
