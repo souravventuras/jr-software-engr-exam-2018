@@ -6,6 +6,13 @@ use App\Controller\AppController;
 class DevelopersController extends AppController
 {
 
+    public $paginate = [
+        'limit' => 10,
+        'order' => [
+            'Developers.id' => 'asc'
+        ]
+    ];
+
     /**
      * Index method
      *
@@ -25,7 +32,7 @@ class DevelopersController extends AppController
             $this->request->data = $options = array();
         }
         if (!empty($options['search']) && ($options['search'] == 'submit')) { // searc submit and & set session params
-            $this->Session->write('Developers.Search', $options);
+            $this->Session->write('Developers.search', $options);
             $search = true;
         }
         if (!empty($options['languages'])) {
@@ -50,16 +57,6 @@ class DevelopersController extends AppController
         $query->order(['Developers.created' => 'DESC']);
 
         $developers_data = $this->paginate($query)->toArray();
-
-        /*$this->paginate = [
-            'limit' => 10,
-            'order' => [
-                'Developers.email' => 'desc'
-            ],
-            'contain' => (['Languages','ProgrammingLanguages']),
-            'conditions' => $conditions
-        ];
-        $developers_data = $this->paginate($this->Developers);*/
         if(!empty($developers_data)){
             $developers = $this->Developers->formatDeveloperData($developers_data);
         } else {
