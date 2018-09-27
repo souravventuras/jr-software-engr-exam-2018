@@ -24,6 +24,7 @@ To  run the application
 ```bash
 bin/cake server -p 8765
 ```
+Result as a picture 
 
 Then visit `http://localhost:8765
 
