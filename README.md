@@ -1,17 +1,26 @@
 
 ## Deployment Process
 
-If Composer is installed globally, run
+After cloning the repository, if Composer is installed globally, run
 
 ```bash
 composer update
 ```
 
-In case you want to use a custom app dir name (e.g. `/myapp/`):
+Create database and named it my_app_db
+
+For generating table using migrations go to project folder into /bin and open terminal/command promt and run following command
 
 ```bash
-composer create-project --prefer-dist cakephp/app myapp
+bin/cake migrations migrate
 ```
+
+To seed database run the command
+
+```bash
+bin/cake migrations seed
+```
+To  run the application 
 
 ```bash
 bin/cake server -p 8765
