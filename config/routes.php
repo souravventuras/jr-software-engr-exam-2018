@@ -32,5 +32,6 @@ Router::scope('/', function (RouteBuilder $routes) {
 });
 
 Router::prefix('api', function ($routes) {
+    $routes->connect('/developers', ['controller' => 'developer', 'action' => 'index']);
     $routes->fallbacks('DashedRoute');
 });
