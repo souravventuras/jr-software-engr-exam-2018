@@ -27,6 +27,7 @@ bin/cake server -p 8765
 ```
 
 Then visit `http://localhost:8765
+For api  `http://localhost:8765/api/developers ->GET, CONTENT-TYPE:application/json
 
 
 Result as a picture 
