@@ -17,6 +17,7 @@
         <li class="header">MAIN NAVIGATION</li>
         <li><a href="{{ route('developer.index') }}"><i class="fa fa-user"></i> <span>Developers</span></a></li>
         <li><a href="{{ route('developer.create') }}"><i class="fa fa-user-plus"></i> <span>New Developers</span></a></li>
+        <li><a href="{{ route('SearchDeveloper') }}"><i class="fa fa-search"></i> <span>Developer Search</span></a></li>
         <li><a href="{{ route('programming-language.index') }}"><i class="fa fa-code"></i> <span>Programming Language</span></a></li>
         <li><a href="{{ route('programming-language.create') }}"><i class="fa fa-code"></i> <span>New Programming Language</span></a></li>
         <li><a href="{{ route('language.index') }}"><i class="fa fa-flag"></i> <span>Language</span></a></li>

@@ -18,6 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/developer-search', 'SearchController@index')->name('SearchDeveloper');
 Route::resource('developer', 'DeveloperController');
 Route::resource('programming-language', 'ProgrammingLanguageController')->except([
     'show'
