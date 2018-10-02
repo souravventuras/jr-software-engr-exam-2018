@@ -9,13 +9,13 @@
 
 ``Step-4``: Create a database and update the database name on ``.env file``
 
-``Step-5``: composer update
+``Step-5``: run composer update `composer update`
 
 ``Step-6``: Run migration `php artisan migrate`
 
 ``Step-7``: Run database seeder. `php artisan  db:seed`
 
-``Step-8``: now run `php vendor/phpunit/phpunit/phpunit` for testing
+``Step-8``: now run `php vendor/phpunit/phpunit/phpunit` for testing (`not completed`)
 
 ``step-9``: Now run `php artisan serve`
 
