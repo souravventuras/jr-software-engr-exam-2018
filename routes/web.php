@@ -10,7 +10,10 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::redirect('/', '/developers');
 Route::resources([
     'languages'             => 'LanguageController',
+    'developers'            => 'DeveloperController',
     'programming_languages' => 'ProgrammingLanguageController',
 ], ['except' => ['show']]);
