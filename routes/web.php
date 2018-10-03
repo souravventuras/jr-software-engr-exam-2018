@@ -10,3 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::resources([
+    'languages'             => 'LanguageController',
+], ['except' => ['show']]);
