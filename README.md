@@ -6,7 +6,7 @@
 Run the following commands in composer: 
 
 ```
-# git clone https://github.com/iarafat/jr-software-engr-exam-2018.git
+# git clone https://github.com/venturas-ltd/jr-software-engr-exam-2018.git
 
 # composer install
 
