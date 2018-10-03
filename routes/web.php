@@ -12,4 +12,5 @@
 */
 Route::resources([
     'languages'             => 'LanguageController',
+    'programming_languages' => 'ProgrammingLanguageController',
 ], ['except' => ['show']]);
