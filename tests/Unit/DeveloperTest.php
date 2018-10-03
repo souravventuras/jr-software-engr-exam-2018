@@ -49,4 +49,11 @@ class DeveloperTest extends TestCase
             ->languages);
 
     }
+
+    /** @test */
+    public function edit_developer_view()
+    {
+        $this->get('/developers/1/edit')
+            ->assertStatus(200);
+    }
 }
