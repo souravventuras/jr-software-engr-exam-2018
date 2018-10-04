@@ -82,6 +82,33 @@ class DeveloperTest extends TestCase
     }
 
     /** @test */
+    public function search_developer_using_programming_language()
+    {
+        $this->get('/developers?pl='.$this->pl->id)
+        ->assertStatus(200)
+        ->assertSee($this->pl->name);
+
+    }
+
+    /** @test */
+    public function search_developer_using_language()
+    {
+        $this->get('/developers?l='.$this->l->id)
+        ->assertStatus(200)
+        ->assertSee($this->l->code);
+
+    }
+
+    /** @test */
+    public function search_developer_using_programming_language_and_language()
+    {
+        $this->get('/developers?pl='.$this->pl->id.'&l='.$this->l->id)
+        ->assertStatus(200)
+        ->assertSee($this->pl->name)
+        ->assertSee($this->l->code);
+    }
+
+    /** @test */
     public function delete_a_developer()
     {
         $delete = $this->developer->delete();
