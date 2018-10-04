@@ -210,7 +210,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Xml' => XmlResponse\Facades\XmlFacade::class,
-        
+
     ],
 
 ];
