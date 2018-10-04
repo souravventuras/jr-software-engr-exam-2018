@@ -33,7 +33,7 @@ class DeveloperTest extends TestCase
     /** @test */
     public function store_a_developer()
     {
-        $ids = [1];
+        $ids = [1,2];
         // programming language test
         $this->developer
             ->programmingLanguages()->attach($ids);
@@ -53,7 +53,38 @@ class DeveloperTest extends TestCase
     /** @test */
     public function edit_developer_view()
     {
-        $this->get('/developers/1/edit')
+        $this->get('/developers/'.$this->developer->id.'/edit')
+            ->assertSee($this->developer->email)
             ->assertStatus(200);
+    }
+
+    /** @test */
+    public function update_a_developer()
+    {
+        $ids = [1,2];
+        $data = ['email' => 'demo@email.com'];
+        $this->developer->update($data);
+        $this->assertEquals($this->developer->email, $data['email']); // error: hi@email.com
+        // programming language test
+        $this->developer
+            ->programmingLanguages()->sync($ids);
+
+        $this->assertCount(1,$this->developer
+            ->programmingLanguages);
+
+        // language test
+        $this->developer
+            ->languages()->sync($ids);
+
+        $this->assertCount(1,$this->developer
+            ->languages);
+
+    }
+
+    /** @test */
+    public function delete_a_developer()
+    {
+        $delete = $this->developer->delete();
+        $this->assertTrue($delete);
     }
 }
